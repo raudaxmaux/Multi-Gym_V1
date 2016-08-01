@@ -1,6 +1,6 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="true">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
+    <ion-nav-bar class="bar-assertive-900">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -17,18 +17,30 @@
       <h1 class="title">Left</h1>
     </ion-header-bar>
     <ion-content>
+      <ion-item menu-close href="#/app/avisos">
+        Avisos
+      </ion-item>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close href="#/app/perfil">
+          Perfil
+        </ion-item>
+        <ion-item menu-close href="#/app/treinos_agendados">
+          Treinos Agendados
+        </ion-item>
+        <ion-item menu-close href="#/app/agendar_treinos">
+          Agendar Treinos
+        </ion-item>
+        <ion-item menu-close href="#/app/busca">
+          Buscar por academias
+        </ion-item>
+        <ion-item menu-close href="#/app/series">
+          Séries
+        </ion-item>
+        <ion-item menu-close href="#/app/presenca">
+          Presença
+        </ion-item>
+        <ion-item menu-close href="#/app/login_inicial">
           Login
-        </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
-        </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
         </ion-item>
       </ion-list>
     </ion-content>
