@@ -35,7 +35,8 @@ angular.module('starter.routes', [])
       url: '/series',
       views: {
         'menuContent': {
-          templateUrl: 'templates/series.html'
+          templateUrl: 'templates/series.html',
+          controller: 'SeriesCtrl'
         }
       }
     })
@@ -56,6 +57,7 @@ angular.module('starter.routes', [])
       views: {
         'menuContent': {
           templateUrl: 'templates/presenca.html',
+          controller: 'Presencatrl'
         }
       }
     })

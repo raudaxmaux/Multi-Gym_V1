@@ -32,7 +32,7 @@ p {
 }
 
 .menu-open .bar.bar-header.expanded {
-    background-color: #222;
+    /*background-color: #222;*/
 }
 
 .menu h2 {

@@ -3,7 +3,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
+.controller('AppCtrl', function($scope, $location, $ionicModal, $ionicPopover, $timeout) {
     // Form data for the login modal
     $scope.loginData = {};
     $scope.isExpanded = false;
@@ -23,6 +23,7 @@ angular.module('starter.controllers', [])
 
     $scope.hideNavBar = function() {
         document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
+        console.log("fecha Nav Bar");
     };
 
     $scope.showNavBar = function() {
@@ -85,7 +86,34 @@ angular.module('starter.controllers', [])
             fabs[0].remove();
         }
     };
+
+    /*  Hide Login Nav Bar  */
+    $scope.loginHiderNav = function(){
+      $timeout(function() {
+        $scope.hideHeader();
+      }, 0);
+      $location.path("app/login_inicial");
+    }
 })
+
+
+////////////////////////////////////////
+// Login
+////////////////////////////////////////
+
+.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+    $scope.$parent.clearFabs();
+    //$scope.$parent.hideNavBar();
+    $scope.$parent.noHeader();
+    $timeout(function() {
+      $scope.$parent.hideHeader();
+    }, 0);
+    ionicMaterialInk.displayEffect();
+})
+
+////////////////////////////////////////
+// Perfil
+////////////////////////////////////////
 
 .controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
     // Set Header
@@ -112,26 +140,15 @@ angular.module('starter.controllers', [])
     ionicMaterialInk.displayEffect();
 })
 
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
-    $scope.$parent.clearFabs();
-    $timeout(function() {
-        $scope.$parent.hideHeader();
-    }, 0);
-    ionicMaterialInk.displayEffect();
-})
-
-
-.controller('BuscaCtrl', function($scope, $stateParams) {
-})
-
-.controller('Treinos_agendadosCtrl', function($scope, $stateParams) {
-})
+////////////////////////////////////////
+// Avisos
+////////////////////////////////////////
 
 .controller('AvisosCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab('right');
 
     $timeout(function() {
@@ -144,7 +161,56 @@ angular.module('starter.controllers', [])
     ionicMaterialInk.displayEffect();
 })
 
-.controller('Agendar_treinosCtrl', function($scope, $stateParams) {
+
+////////////////////////////////////////
+// Treinos
+////////////////////////////////////////
+
+.controller('Treinos_agendadosCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = false;
+  $scope.$parent.setExpanded(false);
+  $scope.$parent.setHeaderFab('right');
 })
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+
+.controller('Agendar_treinosCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = false;
+  $scope.$parent.setExpanded(false);
+  $scope.$parent.setHeaderFab('right');
+})
+
+////////////////////////////////////////
+// Busca
+////////////////////////////////////////
+
+.controller('BuscaCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = false;
+  $scope.$parent.setExpanded(false);
+  $scope.$parent.setHeaderFab('right');
+})
+
+////////////////////////////////////////
+// Controles de associado
+////////////////////////////////////////
+
+.controller('Presencatrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = false;
+  $scope.$parent.setExpanded(false);
+  $scope.$parent.setHeaderFab('right');
+})
+
+
+.controller('SeriesCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = false;
+  $scope.$parent.setExpanded(false);
+  $scope.$parent.setHeaderFab('right');
 });
