@@ -14,7 +14,8 @@ angular.module('starter.routes', [])
     url: '/login_inicial',
     views: {
       'menuContent': {
-        templateUrl: 'templates/login_inicial.html'
+        templateUrl: 'templates/login_inicial.html',
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -23,7 +24,8 @@ angular.module('starter.routes', [])
     url: '/avisos',
     views: {
       'menuContent': {
-        templateUrl: 'templates/avisos.html'
+        templateUrl: 'templates/avisos.html',
+        controller: 'AvisosCtrl'
       }
     }
   })
@@ -44,6 +46,7 @@ angular.module('starter.routes', [])
       views: {
         'menuContent': {
           templateUrl: 'templates/perfil.html',
+          controller: 'ProfileCtrl'
         }
       }
     })
@@ -87,18 +90,6 @@ angular.module('starter.routes', [])
       'menuContent': {
         templateUrl: 'templates/agendar_treinos.html',
         controller: 'Agendar_treinosCtrl'
-      }
-    }
-  })
-
-      //novos controllers TREINOS
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
       }
     }
   });
