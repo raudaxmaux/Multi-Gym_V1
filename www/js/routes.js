@@ -59,7 +59,15 @@ angular.module('starter.routes', [])
             'menuContent': {
               templateUrl: 'templates/perfilcompleto.html',
               controller: 'PerfilCompCtrl'
-            }
+            },
+            'fabContent': {
+              template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-android-person-add"></i></button>',
+              controller: function ($timeout) {
+                  /*$timeout(function () {
+                      document.getElementById('fab-profile').classList.toggle('on');
+                  }, 800);*/
+              }
+          }
           }
         })
 

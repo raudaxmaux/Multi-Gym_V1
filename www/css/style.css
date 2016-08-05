@@ -84,3 +84,21 @@ p {
 .afasta-pra-baixo{
   bottom: :200px;
 }
+
+.expandex{
+  padding-top: 10px;
+  position: static;
+  top: 0 !important;
+  min-height: 100px;
+  z-index: 11;
+}
+
+.spandex .content .h3{
+margin-top: 35px;
+
+}
+
+.spandex .item-avatar .avatar{
+  height: 88px;
+  width: 88px;
+}

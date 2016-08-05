@@ -140,6 +140,15 @@ angular.module('starter.controllers', [])
     ionicMaterialInk.displayEffect();
 })
 
+
+
+.controller('PerfilCompCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = false;
+  $scope.$parent.setExpanded(false);
+  $scope.$parent.setHeaderFab('right');
+})
 ////////////////////////////////////////
 // Avisos
 ////////////////////////////////////////
@@ -198,13 +207,6 @@ angular.module('starter.controllers', [])
 // Controles de associado
 ////////////////////////////////////////
 
-.controller('PerfilCompCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-  $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
-  $scope.isExpanded = false;
-  $scope.$parent.setExpanded(false);
-  $scope.$parent.setHeaderFab('right');
-})
 
 
 .controller('SeriesCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
