@@ -52,15 +52,16 @@ angular.module('starter.routes', [])
       }
     })
 
-    .state('app.presenca', {
-      url: '/presenca',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/presenca.html',
-          controller: 'Presencatrl'
-        }
-      }
-    })
+
+        .state('app.perfilcompleto', {
+          url: '/perfilcompleto',
+          views: {
+            'menuContent': {
+              templateUrl: 'templates/perfilcompleto.html',
+              controller: 'PerfilCompCtrl'
+            }
+          }
+        })
 
         //novos controllers BUSCA
 

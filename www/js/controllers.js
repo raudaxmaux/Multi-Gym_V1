@@ -198,7 +198,7 @@ angular.module('starter.controllers', [])
 // Controles de associado
 ////////////////////////////////////////
 
-.controller('Presencatrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+.controller('PerfilCompCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
   $scope.$parent.showHeader();
   $scope.$parent.clearFabs();
   $scope.isExpanded = false;
