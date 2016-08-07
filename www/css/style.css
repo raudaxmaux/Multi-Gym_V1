@@ -102,3 +102,13 @@ margin-top: 35px;
   height: 88px;
   width: 88px;
 }
+
+.padding{
+  padding = 16px !important;
+}
+
+.right{
+  float: right;
+  margin-left: 5px;
+  margin-bottom: 15px;
+}

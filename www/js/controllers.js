@@ -3,12 +3,10 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $location, $ionicModal, $ionicPopover, $timeout) {
+.controller('AppCtrl', function($scope, $location, $ionicModal, $ionicPopover, $timeout, $cordovaToast) {
     // Form data for the login modal
     $scope.loginData = {};
-    $scope.isExpanded = false;
-    $scope.hasHeaderFabLeft = false;
-    $scope.hasHeaderFabRight = false;
+
 
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {
@@ -39,26 +37,6 @@ angular.module('starter.controllers', [])
         }
     };
 
-    $scope.setExpanded = function(bool) {
-        $scope.isExpanded = bool;
-    };
-
-    $scope.setHeaderFab = function(location) {
-        var hasHeaderFabLeft = false;
-        var hasHeaderFabRight = false;
-
-        switch (location) {
-            case 'left':
-                hasHeaderFabLeft = true;
-                break;
-            case 'right':
-                hasHeaderFabRight = true;
-                break;
-        }
-
-        $scope.hasHeaderFabLeft = hasHeaderFabLeft;
-        $scope.hasHeaderFabRight = hasHeaderFabRight;
-    };
 
     $scope.hasHeader = function() {
         var content = document.getElementsByTagName('ion-content');
@@ -80,20 +58,20 @@ angular.module('starter.controllers', [])
         $scope.hasHeader();
     };
 
-    $scope.clearFabs = function() {
-        var fabs = document.getElementsByClassName('button-fab');
-        if (fabs.length && fabs.length > 1) {
-            fabs[0].remove();
-        }
-    };
-
     /*  Hide Login Nav Bar  */
     $scope.loginHiderNav = function(){
       $timeout(function() {
         $scope.hideHeader();
       }, 0);
       $location.path("app/login_inicial");
-    }
+    };
+
+
+    $scope.toastMess = function(message){
+      console.log(message);
+      $cordovaToast.show(message, 'long', 'center');
+    };
+
 })
 
 
@@ -102,9 +80,6 @@ angular.module('starter.controllers', [])
 ////////////////////////////////////////
 
 .controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
-    $scope.$parent.clearFabs();
-    //$scope.$parent.hideNavBar();
-    $scope.$parent.noHeader();
     $timeout(function() {
       $scope.$parent.hideHeader();
     }, 0);
@@ -116,49 +91,74 @@ angular.module('starter.controllers', [])
 ////////////////////////////////////////
 
 .controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
 
-    // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
+  $scope.$on("$ionicView.enter", function(event, data){
+     // handle event
+     $scope.$parent.showHeader();
+  });
 
-    $timeout(function() {
-        ionicMaterialMotion.blinds({
-            startVelocity: 3000
-        });
-    }, 700);
 
-    // Set Ink
-    ionicMaterialInk.displayEffect();
+       // Set Motion
+       $timeout(function() {
+           ionicMaterialMotion.slideUp({
+               selector: '.slide-up'
+           });
+       }, 300);
+
+       $timeout(function() {
+           ionicMaterialMotion.blinds({
+               startVelocity: 3000
+           });
+       }, 300);
+
+       // Set Ink
+       ionicMaterialInk.displayEffect();
+
 })
 
 
 
 .controller('PerfilCompCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-  $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
-  $scope.isExpanded = false;
-  $scope.$parent.setExpanded(false);
-  $scope.$parent.setHeaderFab('right');
+
+    $scope.$on("$ionicView.enter", function(event, data){
+       // handle event
+       $scope.$parent.showHeader();
+    });
+
+
+
+  // Set Motion
+  $timeout(function() {
+      ionicMaterialMotion.slideUp({
+          selector: '.slide-up'
+      });
+  }, 300);
+
+  $timeout(function() {
+      ionicMaterialMotion.blinds({
+          startVelocity: 3000
+      });
+  }, 700);
+
+  // Set Ink
+  ionicMaterialInk.displayEffect();
+
+
+  $scope.ajuda = function(mensagem){
+    $scope.$parent.toastMess(mensagem);
+  }
 })
 ////////////////////////////////////////
 // Avisos
 ////////////////////////////////////////
 
 .controller('AvisosCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab('right');
+
+    $scope.$on("$ionicView.enter", function(event, data){
+       // handle event
+       $scope.$parent.showHeader();
+    });
+
 
     $timeout(function() {
         ionicMaterialMotion.fadeSlideIn({
@@ -175,20 +175,61 @@ angular.module('starter.controllers', [])
 // Treinos
 ////////////////////////////////////////
 
-.controller('Treinos_agendadosCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-  $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
-  $scope.isExpanded = false;
-  $scope.$parent.setExpanded(false);
-  $scope.$parent.setHeaderFab('right');
+.controller('Treinos_agendadosCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $ionicPopup) {
+
+    $scope.$on("$ionicView.enter", function(event, data){
+       // handle event
+       $scope.$parent.showHeader();
+    });
+
+$scope.showConfirm01 = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Cancelar Treino',
+     template: 'Você tem certeza ?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       console.log('You are sure');
+     } else {
+       console.log('You are not sure');
+     }
+   });
+ };
+
+ $scope.showConfirm02 = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Remarcar Treino',
+     template: 'Você tem certeza? Não há garantia de horário'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       console.log('You are sure');
+     } else {
+       console.log('You are not sure');
+     }
+   });
+ };
+
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideIn({
+            selector: '.animate-fade-slide-in .item'
+        });
+    }, 200);
+
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();    
+
 })
 
 .controller('Agendar_treinosCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-  $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
-  $scope.isExpanded = false;
-  $scope.$parent.setExpanded(false);
-  $scope.$parent.setHeaderFab('right');
+
+    $scope.$on("$ionicView.enter", function(event, data){
+       // handle event
+       $scope.$parent.showHeader();
+    });
+
 })
 
 ////////////////////////////////////////
@@ -197,10 +238,9 @@ angular.module('starter.controllers', [])
 
 .controller('BuscaCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
   $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
   $scope.isExpanded = false;
-  $scope.$parent.setExpanded(false);
-  $scope.$parent.setHeaderFab('right');
+//  $scope.$parent.setExpanded(false);
+//  $scope.$parent.setHeaderFab('right');
 })
 
 ////////////////////////////////////////
@@ -211,8 +251,7 @@ angular.module('starter.controllers', [])
 
 .controller('SeriesCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
   $scope.$parent.showHeader();
-  $scope.$parent.clearFabs();
   $scope.isExpanded = false;
-  $scope.$parent.setExpanded(false);
-  $scope.$parent.setHeaderFab('right');
+//  $scope.$parent.setExpanded(false);
+//  $scope.$parent.setHeaderFab('right');
 });
