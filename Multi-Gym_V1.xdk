@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "a8927b48-a5dd-429d-bdd9-85630ad0e22d",
-      "lastModifiedDate": 1470554754071,
+      "lastModifiedDate": 1470682303177,
       "creationDate": 1470020057239
     },
     "XDK-app-designer": "true",
@@ -90,7 +90,7 @@
         "selectedState": "Included",
         "checksum": "f36b9f8a",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "permissions": {},
         "description": "Cordova Compatibility Plugin",
         "data": {},
@@ -199,22 +199,44 @@
         "description": "Ionic Keyboard Plugin",
         "data": {},
         "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-x-toast",
+        "name": "Toast",
+        "version": "2.5.2",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-x-toast",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-x-toast",
+        "selectedState": "Included",
+        "checksum": "8d822709",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0.0",
+        "author": "Eddy Verbruggen",
+        "permissions": {},
+        "description": "\n    This plugin allows you to show a Toast.\n    A Toast is a little non intrusive buttonless popup which automatically disappears.\n  ",
+        "data": {},
+        "dependedBy": [],
+        "custom": "true"
       }
     ],
     "buildConfigurations": {
       "Android": {
         "platform_": "android",
-        "runtime_": "Crosswalk with Cordova 3.x",
+        "runtime_": "Cordova 3.x",
         "name_": "Android",
         "preferences_": {
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "21",
           "android-installLocation": "auto",
-          "android-signed": true
+          "android-signed": true,
+          "Orientation": "portrait"
         },
         "isActive_": true,
         "appName_": "Multi-Gym_V1",
-        "appID_": "xdk.intel.blank.ad.template.crosswalk",
+        "appID_": "br.com.multigym",
         "appAccess_": {
           "mode": "whitelist",
           "network": [
@@ -229,9 +251,35 @@
             "geo:*",
             "market:*"
           ],
-          "navigation": []
+          "navigation": [],
+          "properties": {}
         },
-        "icons_": [],
+        "icons_": [
+          {
+            "relPath": "img/icone/rvox36x36.png",
+            "density": "ldpi",
+            "height": 36,
+            "width": 36
+          },
+          {
+            "relPath": "img/icone/rvox48x48.png",
+            "density": "mdpi",
+            "height": 48,
+            "width": 48
+          },
+          {
+            "relPath": "img/icone/rvox72x72.png",
+            "density": "hdpi",
+            "height": 72,
+            "width": 72
+          },
+          {
+            "relPath": "img/icone/rvox96x96.png",
+            "density": "xhdpi",
+            "height": 96,
+            "width": 96
+          }
+        ],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
@@ -239,8 +287,8 @@
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "18",
         "appVersion_": "0.0.1",
-        "appAuthor_": "Intel XDK",
-        "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor.",
+        "appAuthor_": "Brito Hipermídia",
+        "appDescription_": "Aplicativo Alpha de academias",
         "appVersionCode_": "1"
       },
       "iOS": {

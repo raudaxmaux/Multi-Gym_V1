@@ -95,7 +95,17 @@ angular.module('starter.routes', [])
         controller: 'Agendar_treinosCtrl'
       }
     }
-  });
+  })
+
+   .state('app.mapa', {
+    url: '/mapa',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/mapa.html',
+        controller: 'MapaCtrl'
+      }
+    }
+  }); 
 
 
   // if none of the above states are matched, use this as the fallback
