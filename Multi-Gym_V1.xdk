@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "a8927b48-a5dd-429d-bdd9-85630ad0e22d",
-      "lastModifiedDate": 1471620961522,
+      "lastModifiedDate": 1472478933948,
       "creationDate": 1470020057239
     },
     "XDK-app-designer": "true",
@@ -76,7 +76,8 @@
         "gitref": "",
         "name": "Splashscreen",
         "description": "Cordova Splashscreen Plugin",
-        "checksum": "b3ad230b"
+        "checksum": "b3ad230b",
+        "cordovaVersion": ">=3.1.0"
       },
       {
         "id": "cordova-plugin-compat",
@@ -159,7 +160,8 @@
         },
         "description": "Cordova Network Information Plugin",
         "data": {},
-        "dependedBy": []
+        "dependedBy": [],
+        "cordovaVersion": ">=3.1.0"
       },
       {
         "id": "cordova-plugin-whitelist",
@@ -220,6 +222,25 @@
         "data": {},
         "dependedBy": [],
         "custom": "true"
+      },
+      {
+        "id": "cordova-plugin-inappbrowser",
+        "name": "InAppBrowser",
+        "version": "1.4.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-inappbrowser",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-inappbrowser",
+        "selectedState": "Included",
+        "checksum": "f88bc51f",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.1.0",
+        "permissions": {},
+        "description": "Cordova InAppBrowser Plugin",
+        "data": {},
+        "dependedBy": []
       }
     ],
     "buildConfigurations": {
@@ -232,7 +253,8 @@
           "android-targetSdkVersion": "21",
           "android-installLocation": "auto",
           "android-signed": true,
-          "Orientation": "portrait"
+          "Orientation": "portrait",
+          "Fullscreen": false
         },
         "isActive_": true,
         "appName_": "Multi-Gym_V1",
@@ -280,16 +302,45 @@
             "width": 96
           }
         ],
-        "splashes_": [],
+        "splashes_": [
+          {
+            "relPath": "img/splashes/splash-320z426.png",
+            "density": "ldpi",
+            "height": 426,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "img/splashes/splash-320z470.png",
+            "density": "mdpi",
+            "height": 470,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "img/splashes/splash-480z680.png",
+            "density": "hdpi",
+            "height": 640,
+            "width": 480,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "img/splashes/splash-720z960.png",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          }
+        ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "certificateId_": "juMjthtOMUuEJHaYzswMHw2",
         "cordovaCLIVersion_": "5.4.1",
-        "crosswalkVersion_": "18",
-        "appVersion_": "0.0.1",
+        "crosswalkVersion_": "19",
+        "appVersion_": "0.0.2",
         "appAuthor_": "Brito Hipermídia",
         "appDescription_": "Aplicativo Alpha de academias",
-        "appVersionCode_": "1"
+        "appVersionCode_": "2"
       },
       "iOS": {
         "platform_": "ios",

@@ -19,6 +19,7 @@
 <intelxdk:plugin intelxdk:name="Whitelist" intelxdk:value="cordova-plugin-whitelist" intelxdk:version="1.2.2" intelxdk:checksum="c0d34e60" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Keyboard" intelxdk:value="ionic-plugin-keyboard" intelxdk:version="2.2.1" intelxdk:checksum="83e55ac3" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="Toast" intelxdk:value="cordova-plugin-x-toast" intelxdk:version="2.5.2" intelxdk:checksum="8d822709" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="InAppBrowser" intelxdk:value="cordova-plugin-inappbrowser" intelxdk:version="1.4.0" intelxdk:checksum="f88bc51f" intelxdk:type="file"/>
 <preference name="windows-publisher-display-name"/>
 <preference name="windows-publisher-id"/>
 <preference name="windows-target-version" value="10.0"/>

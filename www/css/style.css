@@ -103,8 +103,19 @@ margin-top: 35px;
   width: 88px;
 }
 
-.padding{
-  padding = 16px !important;
+.the_padding{
+ /* padding = 16px !important; */
+    padding-left = 16px !important;
+  padding-right = 16px !important;
+  padding-top = 0 !important;
+  padding-bottom = 0 !important;
+}
+
+.middle-padding{
+  padding-left = 16px !important;
+  padding-right = 16px !important;
+  padding-top = 0 !important;
+  padding-bottom = 0 !important;
 }
 
 .padding h3{

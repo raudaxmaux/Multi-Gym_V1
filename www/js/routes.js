@@ -1,4 +1,4 @@
-angular.module('starter.routes', [])
+angular.module('routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -15,10 +15,10 @@ angular.module('starter.routes', [])
     views: {
       'menuContent': {
         templateUrl: 'templates/login_inicial.html',
-        controller: 'LoginCtrl'
+        controller: 'LogCtrl'
       }
     }
-  })
+  }) 
 
   .state('app.avisos', {
     url: '/avisos',
@@ -29,7 +29,6 @@ angular.module('starter.routes', [])
       }
     }
   })
-
 
   .state('app.series', {
       url: '/series',
@@ -51,7 +50,6 @@ angular.module('starter.routes', [])
         }
       }
     })
-
 
         .state('app.perfilcompleto', {
           url: '/perfilcompleto',
