@@ -2,20 +2,36 @@
 
 angular.module('starter').controller('LogCtrl', LogCtrl);
 
-LogCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialMotion', 'ionicMaterialInk', '$firebaseObject', 'FireAuth'];
+LogCtrl.$inject = ['$scope', '$rootScope', '$location', '$stateParams', '$timeout', 'ionicMaterialMotion', 'ionicMaterialInk', '$firebaseObject', 'FireAuth', 'LocalDB'];
 
-function LogCtrl($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, FireAuth){
+function LogCtrl($scope, $rootScope, $location, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, FireAuth, LocalDB){
 
     $scope.user = {
       email: '',
       password: ''
     };
 
+    $scope.isLogged = false;
 
 		$scope.$on("$ionicView.enter", function(event, data){
 		     // handle event
-         $scope.$parent.hideHeader();
-
+        $scope.$parent.hideHeader();
+        LocalDB.initLogin();       
+        firebase.auth().onAuthStateChanged(function(user){
+                 console.log('onAuthStateChanged');         
+          $timeout(function() {          
+             if(user){
+                $rootScope.hereGoes = true;
+                console.log('tem usuário');
+                $location.path("app/perfil");
+             }else{
+               $rootScope.hereGoes = false;
+                console.log('não tem usuário');
+                $scope.verifyPreUser();
+            }
+                console.log($rootScope.userIs + " bem daqui");
+         }, 300);        
+        });
 		  });
 
 
@@ -39,6 +55,11 @@ function LogCtrl($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMater
     }
 
 
+    $scope.logout = function(){
+      FireAuth.logout();
+      $scope.$parent.hereGoes = false;
+    }
+
 
        // Set Motion
        $timeout(function() {
@@ -46,6 +67,12 @@ function LogCtrl($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMater
                selector: '.slide-up'
            });
        }, 300);
+
+
+       $scope.verifyPreUser = function(){
+
+        console.log("Veja se estou logado");
+       };
 
        // Set Ink
        ionicMaterialInk.displayEffect();

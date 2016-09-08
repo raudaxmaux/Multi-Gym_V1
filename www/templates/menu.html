@@ -17,24 +17,27 @@
   </ion-header-bar>
       <ion-content class="stable-bg has-expanded-header">
       <ion-list>
-        <ion-item menu-close ui-sref="app.perfil">
+        <ion-item menu-close ng-hide="!hereGoes" ui-sref="app.perfil">
           Perfil
         </ion-item>
-        <ion-item menu-close ui-sref="app.avisos">
+        <ion-item menu-close ng-hide="!hereGoes" ui-sref="app.avisos">
           Avisos
         </ion-item>
-        <ion-item menu-close ui-sref="app.treinos_agendados">
+        <ion-item menu-close ng-hide="!hereGoes" ui-sref="app.treinos_agendados">
           Treinos Agendados
         </ion-item>
-        <ion-item menu-close ui-sref="app.agendar_treinos">
+        <ion-item menu-close ng-hide="!hereGoes" ui-sref="app.agendar_treinos">
           Agendar Treinos
         </ion-item>
-        <ion-item menu-close ui-sref="app.busca">
+        <ion-item menu-close ng-hide="!hereGoes" ui-sref="app.busca">
           Buscar por academias
         </ion-item>
-        <ion-item menu-close ng-click="loginHiderNav();">
+        <ion-item menu-close ng-hide="hereGoes" ng-click="loginHiderNav();">
           Login
         </ion-item>
+        <ion-item menu-close ng-hide="!hereGoes" ng-click="loginHiderNav();">
+          Logout
+        </ion-item>           
       </ion-list>
     </ion-content>
   </ion-side-menu>

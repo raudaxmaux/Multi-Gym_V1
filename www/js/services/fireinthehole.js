@@ -1,4 +1,5 @@
 (function(){
+	'use strict';
 	
 var FIRE_CONF = {
 		apiKey: "AIzaSyDFRQfEnHNHFESKkQ1zQpqCqsoPYvsc8Is",

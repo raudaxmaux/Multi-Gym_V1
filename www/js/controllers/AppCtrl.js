@@ -3,12 +3,10 @@
 angular.module('starter')
 .controller('AppCtrl', AppCtrl);
 
-AppCtrl.$inject = ['$scope', '$rootScope', '$location', '$ionicModal', '$ionicPopover', '$timeout', '$cordovaToast', 'note_Service', 'FireAuth', 'ngFB', 'storageService'];
+AppCtrl.$inject = ['$scope', '$rootScope', '$location', '$ionicModal', '$ionicPopover', '$timeout', '$cordovaToast', 'FireAuth', 'ngFB'];
 
-function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $timeout, $cordovaToast, note_Service, FireAuth, ngFB, storageService){
+function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $timeout, $cordovaToast, FireAuth, ngFB){
      // Form data for the login modal
-    $scope.loginData = {};
-
 
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {
@@ -16,8 +14,9 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
             this.classList.toggle('active');
         });
     }
-
-    
+    $timeout(function() {
+        console.log($scope.hereGoes + " daqui do menu.");
+    }, 600);   
     ////////////////////////////////////////
     // Layout Methods
     ////////////////////////////////////////
@@ -84,5 +83,4 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
           // error
         });
     };
-
 };

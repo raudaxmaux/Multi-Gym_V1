@@ -2,51 +2,55 @@
 
 angular.module('starter').controller('ProfileCtrl', ProfileCtrl);
 
-ProfileCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialMotion', 'ionicMaterialInk', '$rootScope', 'storageService', 'FireAuth', '$firebaseAuth', '$firebaseObject', 'Utils'];
+ProfileCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialMotion', 'ionicMaterialInk', '$rootScope', 'FireAuth', '$firebaseAuth', '$firebaseObject', 'Utils', 'accessFactory'];
 
-function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $rootScope, storageService, FireAuth, $firebaseAuth, $firebaseObject, Utils){
+function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $rootScope, FireAuth, $firebaseAuth, $firebaseObject, Utils, accessFactory){
 
   /// VARIÁVEIS
-  $scope.isLoggedIn = false;
   $scope.userUid = '';
   $scope.userData = [];
 
   $scope.foto;
   $scope.nome;
 
-
-
-
 		$scope.$on("$ionicView.enter", function(event, data){
 		     // handle event
        $scope.$parent.showHeader();
        firebase.auth().onAuthStateChanged(function(user){	        
         if(user){
-          $scope.isLoggedIn = true;
           $scope.userUid = user.uid;
           $scope.PegaUser($scope.userUid);
         }else{
-          isLoggedIn = false;
 
         };
         });      
 		  });
 
     $scope.PegaUser = function(uid){
-      console.log(uid + " é o que há!")  
-      firebase.database().ref('/usuarios/'+uid).once("value", function(snapUser){
-        $scope.userData = snapUser.val()
-        console.log($scope.userData);
+      console.log(uid + " é o que há!")
+        var theUser = accessFactory.pegaUsuario(uid);  
+        //theUser.once("value", function(snapUser){        
+        //$scope.userData = snapUser.val();
+        var objU = $firebaseObject(theUser);
+        objU.$bindTo($scope, "usuarioAtivo");
+      
+        objU.$loaded().then(function(){
+            console.log("consegui")
+            console.log($scope.usuarioAtivo);    
+            $scope.mandaPerfil($scope.usuarioAtivo);    
+        })
+
+        //console.log($scope.userData);
          $timeout(function() {
-        $scope.mandaPerfil($scope.userData);
+        //$scope.mandaPerfil($scope.usuarioAtivo);
       }, 600);
-      })
+      //})
 
     };
 
     $scope.mandaPerfil = function(Arraial){
       
-      if($scope.userData.photoURL !== ''){
+      if(Arraial.photoURL !== '' || Arraial.photoURL !== undefined){
         $scope.foto = Arraial.photoURL;
       }else{
         $scope.foto = 'img/profile-icon.png';

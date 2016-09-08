@@ -1,27 +1,24 @@
 (function() {
+	'use strict';
 
 angular
 	.module('starter')
 	.factory('FireAuth', FireAuth);
 
-FireAuth.$inject = ['$rootScope', '$firebaseAuth', '$location', '$timeout', 'firebaseDataService', 'storageService', '$firebaseArray', 'Utils', 'ngFB'];
+FireAuth.$inject = ['$rootScope', '$firebaseAuth', '$firebaseObject', '$location', '$timeout', 'accessFactory', 'Utils', 'ngFB'];
 
-
-function FireAuth($rootScope, $firebaseAuth, $location, $timeout, firebaseDataService, storageService, $firebaseArray, Utils, ngFB){
-
+function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeout, accessFactory, Utils, ngFB){
 	var auth = $firebaseAuth();
-	var baseDataUsers = firebase.database().ref("usuarios");
-	var userUid = '';
+	var data_de_Adesao = Date.now();
+	var FB_data = {};
 
 	var usuario = {
 		register: register,
 		login: login,
 		logout: logout,
 		signFB: signFB,
-		insertFacebooker: insertFacebooker,
 		insertMailPass: insertMailPass,
-		isLoggedIn: isLoggedIn,
-		userUid: userUid
+		isLoggedIn: isLoggedIn
 	}
 	return usuario;
 
@@ -38,15 +35,23 @@ function FireAuth($rootScope, $firebaseAuth, $location, $timeout, firebaseDataSe
 					photoURL:'',
 					uid: firebaseUser.uid,
 					email: firebaseUser.email,
-					nivel: 6
+					inscricao: data_de_Adesao,
+					fbSign:false,
+					fb_UserId: '',
+					nivel: 6,
+					pagante: false
 				}; 
 				Utils.hide();
 				insertNewUserFaseUm(aluno);
 
 	      	}).catch(function(error){
 	      		Utils.hide();
+	      		console.log("Erro em Registro");
 	      		console.log(error);
-	      		console.log("aqui que foi o erro 0?");
+	      		if(error.code == "auth/email-already-in-use"){
+	      			Utils.alertshow("Erro", "Já existe um usuário com este email")
+					Utils.hide();
+	      		}      		
 
 	      	});
 
@@ -56,12 +61,11 @@ function FireAuth($rootScope, $firebaseAuth, $location, $timeout, firebaseDataSe
 	      auth.$signInWithEmailAndPassword(user.email, user.password).then(function(firebaseUser){
 	      		if(firebaseUser){
 	      		console.log("está logado "+ firebaseUser.uid);
-	      		guardaChave(firebaseUser.uid);    			
+	      		beyondMailPass(firebaseUser.uid);
 	      		}
 	      }).catch(function(error){
+				console.log("Erro em Login");
 	      		console.log(error);
-				console.log("aqui que foi o erro -1?");
-
 	      		// Não existe usuário
 	      		if(error.code == "auth/user-not-found"){
 	      			Utils.alertshow("Erro", "Não existe usuário cadastrado com esse e-mail")
@@ -102,19 +106,27 @@ function FireAuth($rootScope, $firebaseAuth, $location, $timeout, firebaseDataSe
 							photoURL: authData.photoURL,
 							uid: authData.uid,
 							email: authData.email,
-							nivel: 6
+							inscricao: data_de_Adesao,
+							fbSign:true,
+							fb_UserId: authData.providerData[0].uid,		
+							nivel: 6,
+							pagante: false
 						};
+						FB_data = authData;
+
+						console.log("///////////////////////////");
+						console.log(authData.providerData[0].uid);
+						console.log("///////////////////////////");
 
 						insertNewUserFaseUm(fbaluno)
 
  					}).catch(function(error){
- 						console.log("erro");
+ 						console.log("Erro em Registro com Facebook");
  						console.log(error.code);
  						if(error.code === "auth/account-exists-with-different-credential"){
  							Utils.alertshow("Usuário já existente", "Você já se cadastrou com email/senha");
  						}else{
 							Utils.alertshow("Falha no cadastro", "Ocorreu um erro. Tente Novamente.");
-
  						};
  					});
 
@@ -123,76 +135,79 @@ function FireAuth($rootScope, $firebaseAuth, $location, $timeout, firebaseDataSe
 						
  				}
  			}).catch(function(error){
- 				  		console.log("aqui que foi o erro 2?");
+ 						console.log("Erro Genérico em Registro com Facebook");
  			});
 
-	    }
-
-
-	    function insertFacebooker(object){
-	    	console.log(object);
-	    	var refer = baseDataUsers.orderByChild("uid");
-	    	refer.once("value").then(function(FBsnapshot){
-	    		FBsnapshot.orderByChild("uid").equalTo(object.uid, function(subShot){
-	    			console.log(console.log(subShot))
-	    		});
-	    	}).catch(function(error){
-
-	    	});
 	    }
 
 		function insertNewUserFaseUm(obj){
 			var objeto = obj;
 				console.log("fase Um.");
-			  	var usersRef = baseDataUsers;
-			  	usersRef.child(objeto.uid).once('value').then(function(snapshot) {
+			  	var usersRef = accessFactory.pegaUsuario(objeto.uid);
+			  	usersRef.once('value').then(function(snapshot) {
 		    	var exists = (snapshot.val() !== null);
-		   		insertNewUserFaseDois(objeto, exists);
+		    	if(exists){
+		    		var fb_track = snapshot.val();
+		    	}
+		    	$timeout(function() {
+		   		insertNewUserFaseDois(objeto, FB_data, exists);
+		   		}, 300);
 		  		});			
 		};
 
-		function insertNewUserFaseDois(bje, exists){
+		function insertNewUserFaseDois(bje, fb_track, exists){
 			console.log("fase Dois")
+			console.log(fb_track.photoURL);
 			 if (exists) {
-			    guardaChave(bje.uid)
+			 	console.log("existe");
+
+		    	$timeout(function() {
+				 	if(bje.fbSign !== false)
+				 	{
+				 		if(fb_track.photoURL !== bje.photoURL){
+				 			console.log("a imagem não é igual")
+				 			changePhotoURL(bje.photoURL);
+				 			console.log("traoca a imagem")
+
+				 		}else{
+					 		console.log("a imagem é igual")				 			
+				 			segue_o_seco();
+				 		};
+				 	}else{
+				 		console.log("nenhuma imagem");
+				 		segue_o_seco();
+				 	};				
+				}, 300);
+	
 			  } else {
+			    console.log("ainda não está registrado no Firebase");			  	
 			    insertMailPass(bje);
 			  }			
 		};
 
-		function guardaChave(uid){
-			var keeper = baseDataUsers.orderByChild(uid);
-			
-			keeper.once("value").then(function(keySnapshot){			
-			keySnapshot.forEach(function(childSnap){			
-			if(childSnap.val().uid === uid){
-				userMe = childSnap.key;
-				storageService.setUser(userMe);
-
-			}
-			return true;
-				})
-			}).catch(function(error){
-				console.log(error);				
-			})
-
-      		$timeout(function() {
-      			testaAssistencia();
-      		}, 300);		
-	
+	    function beyondMailPass(uid){
+			segue_o_seco();
 		}
 
-
 	    function insertMailPass(obj){
-			dataRef = firebaseDataService.usuarios;
-			dataRef.child(obj.uid).set(obj);
-			guardaChave(obj.uid);
+			console.log(obj.uid)
+			var dataRef = accessFactory.pegaUsuario(obj.uid);
+			dataRef.set(obj);
+			segue_o_seco();
+		}
+
+	    function changePhotoURL(img){
+			console.log("Chegou aqui")
+			var dataRef = accessFactory.pegaUsuario(obj.uid);
+			dataRef.set({photoURL: img});
+			segue_o_seco()
 		}		
 
-		function testaAssistencia(){
-			$location.path("app/perfil");
-		};//esse ponto e vírgula fica na última função - ATENÇÃO!!!
-
+		function segue_o_seco(){
+      		$timeout(function() {
+      			$location.path("app/perfil");
+      		}, 300);				
+		};	
 	
-	};// fim saveService - ATENÇÃO!!!
+	};// fim service_Auth - ATENÇÃO!!!
 })();//fum da função geral JS - ATENÇÃO!!!

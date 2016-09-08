@@ -6,22 +6,22 @@
           </div>
       </div>
       <div class="padding">
-      <div class="list">
+      <div class="list" ng-hide="hereGoes">
           <ion-md-input placeholder="Email" highlight-color="balanced" type="text" ng-model="user.email"></ion-md-input>
           <ion-md-input placeholder="Password" highlight-color="energized" type="text" ng-model="user.password"></ion-md-input>
       </div>
     </div>
     <div class="padding">
-      <div class="the_padding">
+      <div class="the_padding"  ng-hide="hereGoes" >
           <button ng-click= "login_simples(user)" class="button button-full button-balanced ink" ng-model="LoginBut">Login</button>
       </div>
-        <div class="the_padding" ng-hide="!isLoggedin()">
-          <button ui-sref="/#" class="button button-full button-assertive ink" ng-model="LogoutBut">Logout</button>
-      </div>
-         <div class="the_padding" ng-hide="isLoggedin()">
+         <div class="the_padding" ng-hide="!hereGoes" >
+          <button ng-click= "logout()"  class="button button-full button-assertive ink">Logout</button>
+          </div>  
+         <div class="the_padding" ng-hide="hereGoes" >
           <button ng-click= "registro_simples(user)"  class="button button-full button-assertive ink">Registrar-se</button>
-      </div>         
-      <div class="the_padding">
+          </div>         
+      <div class="the_padding" ng-hide="hereGoes" >
           <button ng-click= "faceLogin('Facebook')" class="button button-full button-border icon-center ion-social-facebook button-positive-900">  Login com Facebook</button>
       </div>
       </div>
