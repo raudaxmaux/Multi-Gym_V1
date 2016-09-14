@@ -16,6 +16,7 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
     }
     $timeout(function() {
         console.log($scope.hereGoes + " daqui do menu.");
+        
     }, 600);   
     ////////////////////////////////////////
     // Layout Methods
@@ -73,6 +74,15 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
       }, 0);
       $location.path("app/login_inicial");
     };
+
+
+     /*  Hide Logout Nav Bar  */
+    $scope.logoutHiderNav = function(){
+      $timeout(function() {
+        $scope.hideHeader();
+      }, 0);
+      $location.path("app/logout");
+    };   
 
 
     $scope.toastMess = function(message){

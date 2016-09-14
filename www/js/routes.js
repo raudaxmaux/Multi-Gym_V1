@@ -20,6 +20,16 @@ angular.module('routes', [])
     }
   }) 
 
+  .state('app.logout', {
+    url: '/logout',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/logout.html',
+        controller: 'LogOutCtrl'
+      }
+    }
+  })
+   
   .state('app.avisos', {
     url: '/avisos',
     views: {

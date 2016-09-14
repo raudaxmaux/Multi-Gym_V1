@@ -143,6 +143,8 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 		function insertNewUserFaseUm(obj){
 			var objeto = obj;
 				console.log("fase Um.");
+				/// fazer o update do usuário aqui.	
+				///
 			  	var usersRef = accessFactory.pegaUsuario(objeto.uid);
 			  	usersRef.once('value').then(function(snapshot) {
 		    	var exists = (snapshot.val() !== null);

@@ -23,11 +23,10 @@ function LogCtrl($scope, $rootScope, $location, $stateParams, $timeout, ionicMat
              if(user){
                 $rootScope.hereGoes = true;
                 console.log('tem usuário');
-                $location.path("app/perfil");
+                $scope.directUser();
              }else{
                $rootScope.hereGoes = false;
                 console.log('não tem usuário');
-                $scope.verifyPreUser();
             }
                 console.log($rootScope.userIs + " bem daqui");
          }, 300);        
@@ -69,9 +68,8 @@ function LogCtrl($scope, $rootScope, $location, $stateParams, $timeout, ionicMat
        }, 300);
 
 
-       $scope.verifyPreUser = function(){
-
-        console.log("Veja se estou logado");
+       $scope.directUser = function(){
+        $location.path("app/perfil");
        };
 
        // Set Ink
