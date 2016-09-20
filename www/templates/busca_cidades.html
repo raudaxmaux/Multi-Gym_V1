@@ -1,0 +1,23 @@
+<ion-view view-title="Listagem de Academias">
+
+  <ion-content  ng-class="{expanded:$scope.isExpanded}">
+      <div class="expandex" style="background: url(img/topomenu.jpg) center; background-size: cover;">
+            <div class="padding">
+
+                 <h4 class="text-center light"><strong>Academias na cidade de</strong></h4>
+                 <h2 class="text-center light"><strong>{{citysearch}}</strong></h2>
+
+            </div>
+        </div>  
+        <div class="list">
+              <a class="item item-thumbnail-left item-text-wrap xablau balanced-bg ink ink-dark button-balanced" ng-repeat="academia in listaum" ng-click="pickAcademy(academia)">
+              <img class="tento" src="{{academia.logo}}"/>
+              <h2><strong>{{academia.nome}}</strong></h2>
+              <p>{{academia.endereco.bairro}}</p>
+              </a>
+        </div>    
+  </ion-content>
+   <button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ui-sref="app.listagem">
+      <i class="icon ion-arrow-return-left"></i>
+      </button> 
+</ion-view>

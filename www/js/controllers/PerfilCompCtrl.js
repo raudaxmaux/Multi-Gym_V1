@@ -9,6 +9,7 @@ function PerfilCompCtrl($scope, $timeout, $stateParams, ionicMaterialMotion, ion
     $scope.$on("$ionicView.enter", function(event, data){
        // handle event
        $scope.$parent.showHeader();
+       $scope.usuarioAtivo = $rootScope.usuarioAtivo;
     });
 
 

@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "a8927b48-a5dd-429d-bdd9-85630ad0e22d",
-      "lastModifiedDate": 1473463542526,
+      "lastModifiedDate": 1474393397807,
       "creationDate": 1470020057239
     },
     "XDK-app-designer": "true",
@@ -337,10 +337,10 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "19",
-        "appVersion_": "0.0.3",
+        "appVersion_": "0.0.6",
         "appAuthor_": "Brito Hipermídia",
         "appDescription_": "Aplicativo Alpha de academias",
-        "appVersionCode_": "3"
+        "appVersionCode_": "4"
       },
       "iOS": {
         "platform_": "ios",

@@ -1,0 +1,21 @@
+<ion-modal-view>
+   <ion-header-bar>
+      <h1 class = "title">Modal Title</h1>
+   </ion-header-bar>
+	
+   <ion-content>
+   <ion-slide-box on-slide-changed="slideHasChanged($index)">
+  <ion-slide>
+    <div class="box blue"><h1>BLUE</h1></div>
+  </ion-slide>
+  <ion-slide>
+    <div class="box yellow"><h1>YELLOW</h1></div>
+  </ion-slide>
+  <ion-slide>
+    <div class="box pink"><h1>PINK</h1></div>
+  </ion-slide>
+</ion-slide-box>
+      <button class = "button icon icon-left ion-ios-close-outline"
+         ng-click = "closeModal()">Close Modal</button>
+   </ion-content>
+</ion-modal-view>

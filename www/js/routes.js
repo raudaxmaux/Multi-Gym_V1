@@ -83,6 +83,36 @@ angular.module('routes', [])
       }
     })
 
+    .state('app.listagem', {
+      url: '/busca_listagem',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/busca_listagem.html',
+          controller: 'BuscaListaCtrl'
+        }
+      }
+    })
+
+    .state('app.cidades', {
+      url: '/busca_cidades',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/busca_cidades.html',
+          controller: 'BuscaListaCidadesCtrl'
+        }
+      }
+    })
+
+    .state('app.academia', {
+      url: '/resultado_academia',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/resultado_academia.html',
+          controller: 'resultadoBuscaAcademiaCtrl'
+        }
+      }
+    })         
+
         //novos controllers TREINOS
 
     .state('app.treinos_agendados', {

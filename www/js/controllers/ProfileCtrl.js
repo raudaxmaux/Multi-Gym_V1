@@ -29,15 +29,14 @@ function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialMotion, ionicM
     $scope.PegaUser = function(uid){
       console.log(uid + " é o que há!")
         var theUser = accessFactory.pegaUsuario(uid);  
-        //theUser.once("value", function(snapUser){        
-        //$scope.userData = snapUser.val();
         var objU = $firebaseObject(theUser);
         objU.$bindTo($scope, "usuarioAtivo");
       
         objU.$loaded().then(function(){
             console.log("consegui")
             console.log($scope.usuarioAtivo);    
-            $scope.mandaPerfil($scope.usuarioAtivo);    
+            $scope.mandaPerfil($scope.usuarioAtivo);
+            $rootScope.usuarioAtivo = $scope.usuarioAtivo;    
         })
 
         //console.log($scope.userData);

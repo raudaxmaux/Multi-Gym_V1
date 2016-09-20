@@ -1,0 +1,90 @@
+<ion-view view-title="{{parceiro.nome}}">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero" style="background-image: url('img/sarados.jpg');">
+            <div class="content">
+                <div class="avatar" style="background-image: url('{{parceiro.logo}}');"></div>
+                <h3 class="padding"><a class="light">{{parceiro.nome}}</a></h3>
+            </div>
+        </div>
+            <div class="prabaixo">
+                  <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-energized">
+
+                    <ion-tab title="Informações">
+                        <ion-nav-view name="tab-1">
+                          <ion-content padding="true">
+                              <div class="paddex">
+                                  <div class="list meio">
+                                         </ion-refresher>
+                                    <div class="item item-text-wrap item-icon-left">
+                                        <h2>{{endereco_completo}}</h2>
+                                        <i class="icon ion-location"></i>
+                                    </div>
+                                   </div>
+                                  <div class="list meio"><!--looping telefone-->
+                                    <div class="item item-text-wrap item-icon-left">
+                                        <h2>{{parceiro.tel_1}}</h2>
+                                        <i class="icon ion-ios-telephone"></i>
+                                    </div>
+                                    <div class="item item-text-wrap item-icon-left">
+                                        <h2>{{parceiro.tel_2}}</h2>
+                                        <i class="icon ion-ios-telephone"></i>
+                                    </div>                                    
+                                   </div>
+                                  <div class="list">
+                                    <div class="item item-text-wrap item-icon-left">
+                                        <h2>{{parceiro.email}}</h2>
+                                        <i class="icon ion-email"></i>
+                                    </div>
+                                    <div class="item item-text-wrap item-icon-left">
+                                        <h2>{{parceiro.horarios}}</h2>
+                                        <i class="icon ion-clock"></i>
+                                    </div>                                    
+                                   </div>                      
+                              </div>
+                          </ion-content>
+                        </ion-nav-view>
+                    </ion-tab>
+
+                    <ion-tab title="Academia">
+                        <ion-nav-view name="tab-2">
+                          <ion-content padding="true">
+                                <h4 class="content padding double-padding-x"><i class="icon ion-trophy more"></i>  MODALIDADES OFERECIDAS</h4>
+                                    <div>
+                                    <div class="item item-text-wrap item-icon-left" ng-repeat="modalidade in modalidades">
+                                        <i class="icon ion-arrow-right-b"></i>
+                                        <h2>{{modalidade.modalidade}}</h2>
+                                    </div>                                    
+                                   </div>
+                                <h4 class="content padding double-padding-x"><i class="icon ion-thumbsup more"></i>  BENEFÍCIOS INCLUÍDOS</h4>
+                                    <div class="list">
+                                    <div class="item item-text-wrap item-icon-left" ng-repeat="beneficio in beneficios">
+                                        <i class="icon ion-arrow-right-b"></i>
+                                        <h2>{{beneficio.tipo}}</h2>
+                                    </div>                                    
+                                   </div>                                   
+                          </ion-content>
+                        </ion-nav-view>
+                    </ion-tab>
+
+                    <ion-tab title="Fotos" >
+                        <ion-nav-view name="tab-3">
+                          <ion-content padding="true">
+                              <div class="paddex">
+                                <div class="list card" ng-repeat="foto in fotos">
+                                    <div class="item item-image">
+                                        <img src="{{foto.url}}">
+                                    </div>
+
+                                </div>
+                              </div>
+                          </ion-content>
+                        </ion-nav-view>
+                    </ion-tab>
+
+                </ion-tabs>
+               </div>              
+    </ion-content>
+       <button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ui-sref="app.cidades">
+      <i class="icon ion-arrow-return-left"></i>
+      </button> 
+</ion-view>
