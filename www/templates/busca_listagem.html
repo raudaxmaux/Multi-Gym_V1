@@ -1,0 +1,29 @@
+<ion-view view-title="Listagem de Academias">
+
+  <ion-content  class="background">
+      <div class="expandex" style="background: url(img/topomenu.jpg) center; background-size: cover;">
+            <div class="padding">
+
+                 <h4 class="text-center light"><strong>Academias no estado de</strong></h4>
+                 <h2 class="text-center energized"> Rio de Janeiro</h2>
+            </div>
+        </div>  
+  <div class="padding">
+    <h2 class="text-center dark">Escolha a cidade</h4>
+ </div>
+       <div>
+
+        <div class="list">
+              <a class="item item-icon-left dark-bg ink ink-light button-energized" ng-repeat="lista in listagem | unique: 'endereco.cidade.nome'" ng-click="sendCity(lista.endereco.cidade.nome)">
+              <i class="icon ion-map"></i>
+              <h3>{{lista.endereco.cidade.nome}}</h2>
+              <p class="branco">{{lista.endereco.estado.nome}}</p>
+              </a>
+        </div>
+        
+      </div>      
+  </ion-content>
+   <button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ui-sref="app.busca">
+      <i class="icon ion-arrow-return-left"></i>
+      </button> 
+</ion-view>

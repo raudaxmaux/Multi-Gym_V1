@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="br.com.multigym" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Multi Gym V1</name>
+  <description>
+        Aplicativo para academias.
+    </description>
+  <author email="alexandre@britohipermidia.com.br" href="http://britohipermidia.com.br/">
+      Your Name Here
+    </author>
+  <content src="index.html"/>
+  <access origin="*"/>
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="SplashScreen" value="none"/>
+  <preference name="SplashScreenDelay" value="0"/>
+  <preference name="FadeSplashScreenDuration" value="1000"/>
+  <preference name="android-minSdkVersion" value="16"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <feature name="StatusBar">
+    <param name="ios-package" onload="true" value="CDVStatusBar"/>
+  </feature>
+  <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
+    <variable name="APP_ID" value="1677347842587839"/>
+    <variable name="APP_NAME" value="MultiGymLogin"/>
+  </plugin>
+</widget>

@@ -1,0 +1,39 @@
+<ion-view view-title="Perfil">
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="background">
+        <div class="hero slide-up" style="background-image: url('img/sarados.jpg');">
+            <div class="content">
+                <div class="avatar" style="background-image: url('{{foto}}');"></div>
+                <h3 class="padding_top"><a class="energized">{{nome}}</a></h3>
+            </div>
+        </div>
+        <div class="tabs tabs-dark tabs-icon-top static">
+            <a ui-sref="app.perfilcompleto" class="tab-item inflate">
+                <i class="icon ion-android-person"></i> Suas Informações
+            </a>
+           <!-- <a ui-sref="app.treinos_agendados" class="tab-item inflate">
+                <i class="icon ion-calendar"></i> Treinos Agendados
+            </a> -->
+            <!-- <a ui-sref="app.avisos" class="tab-item inflate">
+                <i class="icon ion-android-notifications"></i> Avisos<span class="badge badge-assertive">1</span>
+            </a> -->
+        </div>
+        <h4 class="content padding double-padding-x">Vantagens Multi Gym</h4>
+        <div class="list animate-blinds">
+            <a ui-sref="app.avisos" class="item item-text-wrap item-icon-left">
+                <h2>Associado Multi Gym tem 10% de desconto no Miksi Sushi</h2>
+                <p>Clique para ver mais</p>
+                <i class="icon ion-pricetag"></i>
+            </a>
+            <a ui-sref="app.avisos" class="item item-text-wrap item-icon-left">
+                <h2>Promoção número 2</h2>
+                <p>Clique para ver mais</p>
+                <i class="icon ion-pricetag"></i>
+            </a>
+            <a ui-sref="app.avisos" class="item item-text-wrap item-icon-left">
+                <h2>Promoção número 3</h2>
+                <p>Clique para ver mais</p>
+                <i class="icon ion-pricetag"></i>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
