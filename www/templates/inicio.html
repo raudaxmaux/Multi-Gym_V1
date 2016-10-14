@@ -1,0 +1,26 @@
+<ion-view view-title="Início">
+  <ion-content  class="background">
+      <div class="expandex" style="background: url(img/topomenu.jpg) center; background-size: cover;">
+            <div class="padding">
+
+                 <h4 class="text-center light"><strong>Academias em {{cityScape}} - {{stateScape}}</strong></h4>
+
+            </div>
+        </div>  
+        <div ng-repeat="acad in frontAcads">
+            <div class="hero" style="background-image: url('{{acad.fotos.foto1.url}}');" ui-sref="app.academia({id: acad.$id})">
+                <div class="content">
+                    <div class="avatar" style="background-image: url('{{acad.logo.url}}');"></div>
+                    <div  class="padding_top exquisite">
+                    <h3><a class="energized"><strong>{{acad.nome}}</strong></a></h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <!--   <div class="padding">
+          <button ui-sref="app.mapa" class="button button-full button-assertive ink">Busca pelo mapa</button>
+      </div> -->     
+  </ion-content>
+</ion-view>

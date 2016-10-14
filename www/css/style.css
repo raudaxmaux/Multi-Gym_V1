@@ -245,3 +245,16 @@ a.item .item-thumbnail-left .xablau{
   padding-left:  16px;
   padding-right:  16px;
 }
+
+.menu.menu-left{
+  width: calc(100% - 40px) !important;
+}
+.menu-open .menu-content{
+  transform: translate3d(calc(100% - 40px), 0px, 0px) !important;
+}
+
+.exquisite{
+    background: rgb(0, 0, 0);
+    /* RGBa with 0.6 opacity */
+    background: rgba(0, 0, 0, 0.6);
+}

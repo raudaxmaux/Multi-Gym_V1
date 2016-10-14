@@ -47,7 +47,7 @@ angular.module('routes', [])
           templateUrl: 'templates/series.html',
           controller: 'SeriesCtrl'
         }
-      }
+      },
     })
 
 
@@ -60,6 +60,18 @@ angular.module('routes', [])
         }
       }
     })
+
+
+
+    .state('app.inicio', {
+      url: '/inicio',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/inicio.html',
+          controller: 'InicioCtrl'
+        }
+      }    
+    })    
 
         .state('app.perfilcompleto', {
           url: '/perfilcompleto',
@@ -104,13 +116,22 @@ angular.module('routes', [])
     })
 
     .state('app.academia', {
-      url: '/resultado_academia',
+      url: '/resultado_academia/:id',
       views: {
         'menuContent': {
           templateUrl: 'templates/resultado_academia.html',
           controller: 'resultadoBuscaAcademiaCtrl'
-        }
-      }
+        }        
+      },
+        resolve: {
+              unicaAcad: function(accessFactory, $stateParams){
+                  console.log($stateParams.id)
+                  var theAcademy = accessFactory.pegaAcademiaUnica($stateParams.id);
+                  return theAcademy.once("value").then(function(snapshot){              
+                    return snapshot.val();
+                  })              
+              }
+        }        
     })         
 
         //novos controllers TREINOS

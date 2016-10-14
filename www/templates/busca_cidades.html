@@ -10,8 +10,8 @@
             </div>
         </div>  
         <div class="list">
-              <a class="item item-thumbnail-left item-text-wrap xablau balanced-bg ink ink-dark button-energized" ng-repeat="academia in listaum" ng-click="pickAcademy(academia)">
-              <img class="tento" src="{{academia.logo}}"/>
+              <a class="item item-thumbnail-left item-text-wrap xablau balanced-bg ink ink-dark button-energized" ng-repeat="academia in listaum" ui-sref="app.academia({id: academia.$id})">
+              <img class="tento" src="{{academia.logo.url}}"/>
               <h2><strong>{{academia.nome}}</strong></h2>
               <p>{{academia.endereco.bairro}}</p>
               </a>

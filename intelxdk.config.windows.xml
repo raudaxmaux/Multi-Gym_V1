@@ -18,6 +18,8 @@
 <intelxdk:plugin intelxdk:name="Facebook Connect" intelxdk:value="cordova-plugin-facebook4" intelxdk:version="1.7.4" intelxdk:checksum="bdc2021e" intelxdk:type="file">
 <intelxdk:param intelxdk:name="APP_ID" intelxdk:value="1677347842587839"/>
 <intelxdk:param intelxdk:name="APP_NAME" intelxdk:value="MultiGymLogin"/></intelxdk:plugin>
+<intelxdk:plugin intelxdk:name="Compat" intelxdk:value="cordova-plugin-compat" intelxdk:version="1.0.0" intelxdk:checksum="f36b9f8a" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="Geolocation" intelxdk:value="cordova-plugin-geolocation" intelxdk:version="2.4.0" intelxdk:checksum="6542a40c" intelxdk:type="file"/>
 <preference name="windows-publisher-display-name"/>
 <preference name="windows-publisher-id"/>
 <preference name="windows-target-version" value="10.0"/>

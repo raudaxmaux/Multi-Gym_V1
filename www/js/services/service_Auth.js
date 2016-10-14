@@ -16,7 +16,8 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 		logout: logout,
 		signFB: signFB,
 		insertMailPass: insertMailPass,
-		isLoggedIn: isLoggedIn
+		isLoggedIn: isLoggedIn,
+		pegaUser: pegaUser
 	}
 	return usuario;
 
@@ -232,9 +233,30 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 
 		function segue_o_seco(){
       		$timeout(function() {
-      			$location.path("app/perfil");
+      			console.log("Vai daqui")
+      			$location.path("app/inicio");
       		}, 300);				
-		};	
+		};
+
+    	function pegaUser(uid, scope){
+      	console.log(uid + " é o que há!")
+        var theUser = accessFactory.pegaUsuario(uid);  
+        var objU = $firebaseObject(theUser);
+        objU.$bindTo(scope, "usuarioAtivo");
+      
+        objU.$loaded().then(function(){
+            console.log("consegui")
+            $rootScope.usuarioAtivo = scope.usuarioAtivo;
+			//console.log($rootScope.usuarioAtivo);        
+            $rootScope.$broadcast("getUserInfo");
+        })
+
+
+    };
+
+
+
+
 	
 	};// fim service_Auth - ATENÇÃO!!!
 })();//fum da função geral JS - ATENÇÃO!!!

@@ -5,6 +5,48 @@ angular.module('starter')
 
 function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $timeout, FireAuth){
      // Form data for the login modal
+$scope.userUid = '';
+  $scope.userData = [];
+
+  $scope.foto;
+  $scope.nome;
+
+    $scope.$on("$ionicView.enter", function(event, data){
+        firebase.auth().onAuthStateChanged(function(user){          
+            if(user){
+                console.log("com user");
+                $scope.userUid = user.uid;
+                $scope.hereGoes = true;
+                FireAuth.pegaUser($scope.userUid, $scope);
+            }else{
+                console.log("Sem user");
+            };
+        });
+
+
+    });
+
+
+    ////////////////////////////////////////
+    // Pega Caras
+    ////////////////////////////////////////
+
+    $rootScope.$on("getUserInfo", function(ev){
+        console.log("getUserInfo");
+        console.log($rootScope.usuarioAtivo);
+        //$scope.mandaPerfi($rootScope.usuarioAtivo);
+      if($rootScope.usuarioAtivo.photoURL !== '' || $rootScope.usuarioAtivo.photoURL !== undefined){
+        $scope.foto = $rootScope.usuarioAtivo.photoURL;
+      }else{
+        $scope.foto = 'img/profile-icon.png';
+      }
+      if(!$rootScope.usuarioAtivo.displayName){
+        $scope.nome = "Olá, visitante";
+      }else{
+          $scope.nome = $rootScope.usuarioAtivo.displayName;
+
+      }        
+    })
 
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {
@@ -23,12 +65,12 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
 
     $scope.hideNavBar = function() {
         document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
-        console.log("fecha Nav Bar");
+        console.log("esconde Nav Bar");
     };
 
     $scope.showNavBar = function() {
         document.getElementsByTagName('ion-nav-bar')[0].style.display = 'block';
-        console.log("abre Nav Bar");        
+        console.log("mostra Nav Bar");        
     };
 
     $scope.noHeader = function() {
@@ -57,7 +99,7 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
     };
 
     $scope.mc_Lovin = function() {
-        console.log("McLoving is the best"); 
+            
     }; 
 
     $scope.showHeader = function() {
@@ -83,12 +125,23 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
     };   
 
 
-    $scope.toastMess = function(message){
-      console.log(message);
-      $cordovaToast.showLongCenter(message).then(function(success) {
-          // success
-        }, function (error) {
-          // error
-        });
+    $scope.mandaPerfil = function(Arraial){
+        console.log("perfil enviado");
+      
+      if(Arraial.photoURL !== '' || Arraial.photoURL !== undefined){
+        $scope.foto = Arraial.photoURL;
+      }else{
+        $scope.foto = 'img/profile-icon.png';
+      }
+      if(!Arraial.displayName){
+        $scope.nome = "Olá, visitante";
+        $scope.aviso();
+      }else{
+          $scope.nome = Arraial.displayName;
+
+      }
     };
+
+
+
 };

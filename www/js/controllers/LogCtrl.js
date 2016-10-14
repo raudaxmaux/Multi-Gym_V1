@@ -69,7 +69,7 @@ function LogCtrl($scope, $rootScope, $location, $stateParams, $timeout, ionicMat
 
 
        $scope.directUser = function(){
-        $location.path("app/perfil");
+        $location.path("app/inicio");
        };
 
        // Set Ink

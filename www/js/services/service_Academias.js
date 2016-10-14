@@ -43,12 +43,13 @@
 			mezzo.$loaded().then(function(){
 				angular.forEach(mezzo, function(value, key){
 						
-						if(value.endereco.cidade.nome === place){
+						if(value.endereco.cidade === place){
 							respostaCidade.push(value)
 						}
 				});
 			})
 			//respostaCidade = $firebaseArray(queryCity);
+
 			return respostaCidade;
 		}
 

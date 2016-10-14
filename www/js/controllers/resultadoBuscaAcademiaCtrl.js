@@ -3,7 +3,7 @@
 
 	angular.module('starter').controller('resultadoBuscaAcademiaCtrl', resultadoBuscaAcademiaCtrl);
 
-	function resultadoBuscaAcademiaCtrl($scope, $rootScope, $ionicModal, $location, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $filter, acadFactory, accessFactory){
+	function resultadoBuscaAcademiaCtrl($scope, $rootScope, $ionicModal, $location, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $filter, acadFactory, accessFactory, unicaAcad){
 	    $scope.$on("$ionicView.enter", function(event, data){
 	       // handle event
 	       $scope.$parent.showHeader();
@@ -14,15 +14,17 @@
 	    $scope.$on("$ionicView.leave", function(event){
 	    	$scope.parceiro = null
 	    });
+      
+      console.log("academia chegou!")
+      console.log(unicaAcad)
 
-	    $timeout(function() {
-   		  $scope.parceiro = $rootScope.chosenAcad;
+   		  $scope.parceiro = unicaAcad;
    		  console.log($scope.parceiro);
-   		  $scope.theBasics();
-		}, 600);
+
+
 
 	    $scope.theBasics = function(){
-	    	$scope.endereco_completo = $scope.parceiro.endereco.logradouro.nome+" "+$scope.parceiro.endereco.endereco+" "+$scope.parceiro.endereco.numero;
+	    	$scope.endereco_completo = $scope.parceiro.endereco.endereco+" "+$scope.parceiro.endereco.numero;
 			if($scope.parceiro.endereco.complemento){
 				$scope.endereco_completo = $scope.endereco_completo+"/"+$scope.parceiro.endereco.complemento;
 			}
@@ -30,9 +32,10 @@
 			$scope.modalidades = $scope.parceiro.modalidades;
 			$scope.beneficios = $scope.parceiro.beneficios;
 			$scope.fotos = $scope.parceiro.fotos;
+
 		}
 
-
+        $scope.theBasics();
 /////////////// modal
 
 $ionicModal.fromTemplateUrl('templates/modal_window.html', {

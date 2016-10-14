@@ -17,13 +17,14 @@ function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialMotion, ionicM
        $scope.$parent.showHeader();
        firebase.auth().onAuthStateChanged(function(user){	        
         if(user){
-          console.log("e o meu user?")
+          console.log("e o meu user?");
           $scope.userUid = user.uid;
           $scope.PegaUser($scope.userUid);
         }else{
 
         };
-        });      
+        });
+        console.log("aqui será renomeado para 'Início'");      
 		  });
 
     $scope.PegaUser = function(uid){

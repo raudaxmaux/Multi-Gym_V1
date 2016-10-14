@@ -2,8 +2,6 @@
 
 angular.module('starter').controller('MapaCtrl', MapaCtrl);
 
-MapaCtrl.$inject = ['$scope', '$timeout', '$stateParams', 'ionicMaterialMotion', 'ionicMaterialInk', '$firebaseObject', '$cordovaGeolocation'];
-
 function MapaCtrl($scope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $cordovaGeolocation){
 
     $scope.$on("$ionicView.enter", function(event, data){
