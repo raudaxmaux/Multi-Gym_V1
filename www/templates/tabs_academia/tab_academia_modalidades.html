@@ -1,0 +1,16 @@
+<ion-content padding="true">
+      <h4 class="content padding double-padding-x"><i class="icon ion-trophy more energized"></i>  MODALIDADES OFERECIDAS</h4>
+          <div>
+          <div class="item item-text-wrap item-icon-left" ng-repeat="modalidade in modalidades">
+              <i class="icon ion-arrow-right-b light"></i>
+              <h2>{{modalidade.modalidade}}</h2>
+          </div>                                    
+         </div>
+      <h4 class="content padding double-padding-x"><i class="icon ion-thumbsup more light"></i>  BENEFÍCIOS INCLUÍDOS</h4>
+          <div class="list">
+          <div class="item item-text-wrap item-icon-left" ng-repeat="beneficio in beneficios">
+              <i class="icon ion-arrow-right-b light"></i>
+              <h2>{{beneficio.tipo}}</h2>
+          </div>                                    
+         </div>                                   
+</ion-content>

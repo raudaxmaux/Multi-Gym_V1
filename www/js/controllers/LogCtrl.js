@@ -2,8 +2,6 @@
 
 angular.module('starter').controller('LogCtrl', LogCtrl);
 
-LogCtrl.$inject = ['$scope', '$rootScope', '$location', '$stateParams', '$timeout', 'ionicMaterialMotion', 'ionicMaterialInk', '$firebaseObject', 'FireAuth', 'LocalDB'];
-
 function LogCtrl($scope, $rootScope, $location, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, FireAuth, LocalDB){
 
     $scope.user = {
@@ -28,7 +26,6 @@ function LogCtrl($scope, $rootScope, $location, $stateParams, $timeout, ionicMat
                $rootScope.hereGoes = false;
                 console.log('não tem usuário');
             }
-                console.log($rootScope.userIs + " bem daqui");
          }, 300);        
         });
 		  });

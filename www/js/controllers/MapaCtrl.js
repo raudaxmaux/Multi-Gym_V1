@@ -2,8 +2,10 @@
 
 angular.module('starter').controller('MapaCtrl', MapaCtrl);
 
-function MapaCtrl($scope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $cordovaGeolocation){
+function MapaCtrl($scope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $cordovaGeolocation, NgMap, $geofire, accessFactory){
 
+    $scope.searchResults = [];
+    
     $scope.$on("$ionicView.enter", function(event, data){
        // handle event
        $scope.$parent.showHeader();
@@ -11,49 +13,55 @@ function MapaCtrl($scope, $timeout, $stateParams, ionicMaterialMotion, ionicMate
        console.log("mapas!!!");
     });
 
-  $scope.isExpanded = false;
-//  $scope.$parent.setExpanded(false);
-//  $scope.$parent.setHeaderFab('right');
 
-var options = {timeout: 10000, enableHighAccuracy: true};
+    
+    
+    var $geo = $geofire(accessFactory.pegaMapeamento());
+
+    var options = {timeout: 20000, enableHighAccuracy: true};  
+    $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+      
+      $scope.coords = {
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+      };
+      console.log($scope.coords);
+
+      var query = $geo.$query({
+        center: [$scope.coords.lat, $scope.coords.long],
+        radius: 1
+      });
  
-  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
- 
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- 
-    var mapOptions = {
-      center: latLng,
-      zoom: 15,
-      streetViewControl:false,
-      mapTypeControl:false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
- 
-    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      var geoQueryCallback = query.on("key_entered", "SEARCH:KEY_ENTERED");
+
+      $scope.$on("SEARCH:KEY_ENTERED", function (event, key, location, distance) {
+          var obje = {key: key, location: location, distance: distance};
+          
+          console.log("entrou "+ key);
+          var fatUser = accessFactory.pegaAcademiaUnica(key);
+          fatUser.once('value').then(function(snapshot) {
+            obje.info = snapshot.val();
+            $scope.searchResults.push(obje);
+          });
+          console.log($scope.searchResults)  
+      });
+
+             NgMap.getMap().then(function(map) {
+        $scope.map = map;
+      });   
+    
+    }, function(error){
+      console.log("Could not get location");
+    });
 
 
-  var marker = new google.maps.Marker({
-      map: $scope.map,
-      animation: google.maps.Animation.DROP,
-      position: latLng
-  });  
-
- var infoWindow = new google.maps.InfoWindow({
-      content: "Você está aqui!<br/><a href='#/app/series'>Clique aqui para acessar um perfil prévio de academia.</a>"
-  });
- 
-
-  $timeout(function() {
-        infoWindow.open($scope.map, marker);
-  }, 2000);
-
-  google.maps.event.addListener(marker, 'click', function () {
-      infoWindow.open($scope.map, marker);
-  });     
- 
-  }, function(error){
-    console.log("Could not get location");
-  });
+    $scope.mandapraLa = function(evt, chave){
+      console.log(chave);
+      $scope.resulte = $scope.searchResults[chave];
+      console.log($scope.resulte)
+      console.log($scope.resulte.info.nome)
+      $scope.map.showInfoWindow('mostra', this);     
+    }
 
 
 };

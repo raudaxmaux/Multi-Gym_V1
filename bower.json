@@ -10,6 +10,11 @@
     "angular": "1.5.3",
     "angular-animate": "1.5.3",
     "angular-ui-router": "0.2.13",
-    "angular-sanitize": "1.5.3"
+    "angular-sanitize": "1.5.3",
+    "geofire": "^4.1.1",
+    "firebase": "3.x.x"
+  },
+  "dependencies": {
+    "geofire": "^4.1.1"
   }
 }

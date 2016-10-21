@@ -1,0 +1,31 @@
+<ion-content padding="true">
+    <div class="paddex">
+        <div class="list meio">
+               </ion-refresher>
+          <div class="item item-text-wrap item-icon-left">
+              <h2>{{endereco_completo}}</h2>
+              <i class="icon ion-location light"></i>
+          </div>
+         </div>
+        <div class="list meio"><!--looping telefone-->
+          <div class="item item-text-wrap item-icon-left">
+              <h2>{{parceiro.tel_1}}</h2>
+              <i class="icon ion-ios-telephone light"></i>
+          </div>
+          <div class="item item-text-wrap item-icon-left">
+              <h2>{{parceiro.tel_2}}</h2>
+              <i class="icon ion-ios-telephone light"></i>
+          </div>                                    
+         </div>
+        <div class="list">
+          <div class="item item-text-wrap item-icon-left">
+              <h2>{{parceiro.email}}</h2>
+              <i class="icon ion-email light"></i>
+          </div>
+          <div class="item item-text-wrap item-icon-left">
+              <h2>{{parceiro.horarios}}</h2>
+              <i class="icon ion-clock light"></i>
+          </div>                                    
+         </div>                      
+    </div>
+</ion-content>

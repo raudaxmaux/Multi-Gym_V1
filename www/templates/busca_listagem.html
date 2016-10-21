@@ -14,10 +14,10 @@
        <div>
 
         <div class="list">
-              <a class="item item-icon-left dark-bg ink ink-light button-energized" ng-repeat="lista in listagem | unique: 'endereco.cidade.nome'" ng-click="sendCity(lista.endereco.cidade.nome)">
+              <a class="item item-icon-left dark-bg ink ink-light button-energized" ng-repeat="lista in listagem | unique: 'endereco.cidade'" ng-click="sendCity(lista.endereco.cidade)">
               <i class="icon ion-map"></i>
-              <h3>{{lista.endereco.cidade.nome}}</h2>
-              <p class="branco">{{lista.endereco.estado.nome}}</p>
+              <h3>{{lista.endereco.cidade}}</h2>
+              <p class="branco">{{lista.endereco.estado}}</p>
               </a>
         </div>
         

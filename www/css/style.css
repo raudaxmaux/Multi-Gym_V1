@@ -258,3 +258,23 @@ a.item .item-thumbnail-left .xablau{
     /* RGBa with 0.6 opacity */
     background: rgba(0, 0, 0, 0.6);
 }
+.minimal{
+background-size: cover;
+  color: #fff;
+  height: 80px !important;
+  position: relative;
+  text-align: center;
+  -webkit-transition: all 1s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: all 1s cubic-bezier(0.55, 0, 0.1, 1);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  text-align: center;
+  }
+
+
+
+.maior{
+    height: 60px !important;
+    width: 60px !important;
+}
