@@ -1,11 +1,13 @@
 <ion-view view-title="Mapa de academias"><ion-content data-tap-disabled="true">
-	<ng-map style="height: 100%;" disable-default-u-i="true">
+	<ng-map id="radial" style="height: 100%;" disable-default-u-i="true">
 
 	<info-window id="mostra" template="templates/marker_mapa_proximo.html"></info-window>
 		<marker position="current" centered="true" icon="img/voce.png"></marker>
 		<marker ng-repeat="(id,res) in searchResults" id={{id}} position="{{res.location}}" icon="img/dumbell.png" on-click="mandapraLa(event, {{id}})"></marker>
-		<shape id="circle" name="circle" centered="true"  fill-color="#ffff00" fill-opacity="0.35" stroke-weight="0"
-      center="current-position" radius="1000" editable="false" ></shape>
+
+		<!--<shape id="circle" name="circle" centered="true"  fill-color="#ffff00" fill-opacity="0.35" stroke-weight="0"
+      center="current-position" radius="1000" editable="false" ></shape> -->
+
 	</ng-map>
     </ion-content>
 </ion-view>

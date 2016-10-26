@@ -8,7 +8,7 @@ factory(root.angular);
 }
 }(this, function(angular) {
 /**
- * AngularJS Google Maps Ver. 1.17.3
+ * AngularJS Google Maps Ver. 1.17.94
  *
  * The MIT License (MIT)
  * 
@@ -140,9 +140,9 @@ angular.module('ngMap', []);
         for (var k2 in vm.map.customMarkers) {
           bounds.extend(vm.map.customMarkers[k2].getPosition());
         }
-    	  if (vm.mapOptions.maximumZoom) {
-    		  vm.enableMaximumZoomCheck = true; //enable zoom check after resizing for markers
-    	  }
+        if (vm.mapOptions.maximumZoom) {
+          vm.enableMaximumZoomCheck = true; //enable zoom check after resizing for markers
+        }
         vm.map.fitBounds(bounds);
       }
     };
@@ -209,6 +209,8 @@ angular.module('ngMap', []);
         ((typeof center === 'string') && center.match(/\{\{.*\}\}/))
       ) {
         mapOptions.center = new google.maps.LatLng(0, 0);
+      } else if( (typeof center === 'string') && center.match(/[0-9.-]*,[0-9.-]*/) ){
+           mapOptions.center = new google.maps.LatLng(center);
       } else if (!(center instanceof google.maps.LatLng)) {
         var geoCenter = mapOptions.center;
         delete mapOptions.center;
@@ -252,18 +254,18 @@ angular.module('ngMap', []);
           $parse($attrs.mapInitialized)($scope, {map: vm.map});
         }
       });
-	  
-	  //add maximum zoom listeners if zoom-to-include-markers and and maximum-zoom are valid attributes
-	  if (mapOptions.zoomToIncludeMarkers && mapOptions.maximumZoom) {
-	    google.maps.event.addListener(vm.map, 'zoom_changed', function() {
+    
+    //add maximum zoom listeners if zoom-to-include-markers and and maximum-zoom are valid attributes
+    if (mapOptions.zoomToIncludeMarkers && mapOptions.maximumZoom) {
+      google.maps.event.addListener(vm.map, 'zoom_changed', function() {
           if (vm.enableMaximumZoomCheck == true) {
-			vm.enableMaximumZoomCheck = false;
-	        google.maps.event.addListenerOnce(vm.map, 'bounds_changed', function() { 
-		      vm.map.setZoom(Math.min(mapOptions.maximumZoom, vm.map.getZoom())); 
-		    });
-	  	  }
-	    });
-	  }
+      vm.enableMaximumZoomCheck = false;
+          google.maps.event.addListenerOnce(vm.map, 'bounds_changed', function() { 
+          vm.map.setZoom(Math.min(mapOptions.maximumZoom, vm.map.getZoom())); 
+        });
+        }
+      });
+    }
     };
 
     $scope.google = google; //used by $scope.eval to avoid eval()
@@ -287,10 +289,10 @@ angular.module('ngMap', []);
     if (options.lazyInit) { // allows controlled initialization
       // parse angular expression for dynamic ids
       if (!!$attrs.id && 
-      	  // starts with, at position 0
-	  $attrs.id.indexOf("{{", 0) === 0 &&
-	  // ends with
-	  $attrs.id.indexOf("}}", $attrs.id.length - "}}".length) !== -1) {
+          // starts with, at position 0
+    $attrs.id.indexOf("{{", 0) === 0 &&
+    // ends with
+    $attrs.id.indexOf("}}", $attrs.id.length - "}}".length) !== -1) {
         var idExpression = $attrs.id.slice(2,-2);
         var mapId = $parse(idExpression)($scope);
       } else {
@@ -518,11 +520,11 @@ angular.module('ngMap', []);
 
     CustomMarker.prototype.setPosition = function(position) {
       position && (this.position = position); /* jshint ignore:line */
-
+      var _this = this;
       if (this.getProjection() && typeof this.position.lng == 'function') {
-        var posPixel = this.getProjection().fromLatLngToDivPixel(this.position);
-        var _this = this;
+        void 0;
         var setPosition = function() {
+          var posPixel = _this.getProjection().fromLatLngToDivPixel(_this.position);
           var x = Math.round(posPixel.x - (_this.el.offsetWidth/2));
           var y = Math.round(posPixel.y - _this.el.offsetHeight - 10); // 10px for anchor
           _this.el.style.left = x + "px";
@@ -1901,14 +1903,14 @@ angular.module('ngMap', []);
           autocomplete.setTypes(optionValue);
         }
       });
-	  
-	  attrs.$observe('componentRestrictions', function (val) {
-		 if (val) {
-		   autocomplete.setComponentRestrictions(scope.$eval(val));
-		 }
-	   });
+    
+    attrs.$observe('componentRestrictions', function (val) {
+     if (val) {
+       autocomplete.setComponentRestrictions(scope.$eval(val));
+     }
+     });
     };
-	
+  
     return {
       restrict: 'A',
       require: '?ngModel',
@@ -2488,7 +2490,7 @@ angular.module('ngMap', []);
 
       // convert output more for center and position
       if (
-        (options.key == 'center' || options.key == 'center') &&
+        (options.key == 'center' || options.key == 'position') &&
         output instanceof Array
       ) {
         output = new google.maps.LatLng(output[0], output[1]);
@@ -2954,7 +2956,7 @@ angular.module('ngMap', []);
     $document = _$document_[0], $window = _$window_, $timeout = _$timeout_;
 
     return {
-	  mapInstances: mapInstances,
+    mapInstances: mapInstances,
       resetMapInstances: resetMapInstances,
       getMapInstance: getMapInstance,
       returnMapInstance: returnMapInstance

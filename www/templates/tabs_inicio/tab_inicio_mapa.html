@@ -1,0 +1,13 @@
+<!-- <ion-content padding="false" style="top: 0px;">
+	<ng-map center="{{parceiro.endereco.geopos.lat}},{{parceiro.endereco.geopos.lng}}" style="height: 100%;" disable-default-u-i="true">
+	<marker position="{{parceiro.endereco.geopos.lat}},{{parceiro.endereco.geopos.lng}}" centered="true" icon="img/dumbell.png"></marker>
+	</ng-map>
+</ion-content>-->
+<ion-content padding="false" style="top: 0px;">
+	<map id="primeiro" style="height: 100%;" disable-default-u-i="true">
+	<info-window id="mostra" position="{{[resultado.endereco.geopos.lat, resultado.endereco.geopos.lng]}}" template="templates/tabs_inicio/marker_mapa_proximo_2.html"></info-window>
+		<marker position="current" centered="true" icon="img/voce.png"></marker>
+		<marker ng-repeat="(id,res) in frontAcads" id={{id}} position="{{[res.endereco.geopos.lat, res.endereco.geopos.lng]}}" icon="img/dumbell.png" on-click="mostraMe(event, {{id}})"></marker>
+	</map>
+
+</ion-content>

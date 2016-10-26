@@ -4,9 +4,12 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'routes', 'ionic-material', 'ngCordova', 'ionMdInput', 'firebase', 'angular.filter', 'angularGeoFire', 'ngMap'])
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform, $rootScope, NgMap) {
 
   $ionicPlatform.ready(function() {
+      NgMap.getMap().then(function(map) {
+          $rootScope.map = map;
+        });
     //facebookConnectPlugin.browserInit("1677347842587839")
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

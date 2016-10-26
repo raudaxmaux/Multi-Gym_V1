@@ -70,7 +70,15 @@ angular.module('routes', [])
           templateUrl: 'templates/inicio.html',
           controller: 'InicioCtrl'
         }
-      }    
+      },
+           resolve:{
+              geoPos: function($rootScope, $cordovaGeolocation){    
+                      return $cordovaGeolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then(function(position){
+                        return position;                      
+                      })
+                }
+
+              }         
     })    
 
         .state('app.perfilcompleto', {
@@ -80,7 +88,7 @@ angular.module('routes', [])
               templateUrl: 'templates/perfilcompleto.html',
               controller: 'PerfilCompCtrl'
             }
-          }
+          },
         })
 
         //novos controllers BUSCA

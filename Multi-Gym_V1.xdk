@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "a8927b48-a5dd-429d-bdd9-85630ad0e22d",
-      "lastModifiedDate": 1477057704066,
+      "lastModifiedDate": 1477426270602,
       "creationDate": 1470020057239
     },
     "XDK-app-designer": "true",
@@ -42,24 +42,6 @@
         "name": "Device",
         "description": "Cordova Device Plugin",
         "checksum": "98231bf0"
-      },
-      {
-        "id": "cordova-plugin-splashscreen",
-        "version": "4.0.0",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {},
-        "dependsOn": [],
-        "dependedBy": [],
-        "originType": "cordova.io",
-        "origin": "cordova-plugin-splashscreen",
-        "permissions": {},
-        "topLevel": true,
-        "gitref": "",
-        "name": "Splashscreen",
-        "description": "Cordova Splashscreen Plugin",
-        "checksum": "d3c12458",
-        "cordovaVersion": ">=3.1.0"
       },
       {
         "id": "cordova-plugin-console",
@@ -262,44 +244,15 @@
             "width": 96
           }
         ],
-        "splashes_": [
-          {
-            "relPath": "img/splashes/splash-320z426.png",
-            "density": "ldpi",
-            "height": 426,
-            "width": 320,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "img/splashes/splash-320z470.png",
-            "density": "mdpi",
-            "height": 470,
-            "width": 320,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "img/splashes/splash-480z680.png",
-            "density": "hdpi",
-            "height": 640,
-            "width": 480,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "img/splashes/splash-720z960.png",
-            "density": "xhdpi",
-            "height": 960,
-            "width": 720,
-            "orientation": "portrait"
-          }
-        ],
+        "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "19",
-        "appVersion_": "0.010.5",
+        "appVersion_": "0.020",
         "appAuthor_": "Brito Hipermídia",
         "appDescription_": "Aplicativo Beta de academias",
-        "appVersionCode_": "11"
+        "appVersionCode_": "13"
       },
       "iOS": {
         "platform_": "ios",

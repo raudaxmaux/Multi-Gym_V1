@@ -1,5 +1,5 @@
 <ion-view view-title="{{parceiro.nome}}">
-    <ion-content ng-class="{expanded:$scope.isExpanded}"  class="background">
+    <ion-content ng-class="background"  class="background">
         <div class="hero" style="background-image: url('img/sarados.jpg');">
             <div class="content">
                 <div class="avatar" style="background-image: url('{{parceiro.logo.url}}');"></div>
@@ -8,7 +8,6 @@
         </div>
             <div class="prabaixo">
                   <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-energized">
-
                     <ion-tab title="Informações">
                         <ion-nav-view name="tab-1">
                           <div ng-include src="'templates/tabs_academia/tab_academia_info.html'"></div>

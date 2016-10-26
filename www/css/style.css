@@ -208,6 +208,10 @@ a.item .item-thumbnail-left .xablau{
     top: 200px;
   }
 
+  .menosbaixo > .tabs-top > .tabs{
+    top: 100px;
+  }
+
   .paddex{
     font-size: 18px;
     padding-right: 10px;
@@ -277,4 +281,8 @@ background-size: cover;
 .maior{
     height: 60px !important;
     width: 60px !important;
+}
+
+.tab-item{
+  max-width: 800px;
 }

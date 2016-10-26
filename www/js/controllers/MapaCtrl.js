@@ -2,7 +2,7 @@
 
 angular.module('starter').controller('MapaCtrl', MapaCtrl);
 
-function MapaCtrl($scope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $cordovaGeolocation, NgMap, $geofire, accessFactory){
+function MapaCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $cordovaGeolocation, NgMap, $geofire, accessFactory){
 
     $scope.searchResults = [];
     
@@ -46,9 +46,10 @@ function MapaCtrl($scope, $timeout, $stateParams, ionicMaterialMotion, ionicMate
           console.log($scope.searchResults)  
       });
 
-             NgMap.getMap().then(function(map) {
-        $scope.map = map;
-      });   
+        NgMap.getMap("radial").then(function(map) {
+          $scope.map = map;
+        });
+
     
     }, function(error){
       console.log("Could not get location");
@@ -62,6 +63,10 @@ function MapaCtrl($scope, $timeout, $stateParams, ionicMaterialMotion, ionicMate
       console.log($scope.resulte.info.nome)
       $scope.map.showInfoWindow('mostra', this);     
     }
+
+      $scope.$on('mapInitialized', function (event, map) {
+          console.log("mapa inicializado em proximidade")
+      });
 
 
 };

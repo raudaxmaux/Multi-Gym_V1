@@ -1,0 +1,12 @@
+                        <div padding="false" style="top: 60px; margin-top: 49px;">
+        <div ng-repeat="acad in frontAcads">
+            <div class="hero" style="background-image: url('{{acad.fotos.foto1.url}}');" ui-sref="app.academia({id: acad.$id})">
+                <div class="content">
+                    <div class="avatar" style="background-image: url('{{acad.logo.url}}');"></div>
+                    <div  class="padding_top exquisite">
+                    <h3><a class="energized"><strong>{{acad.nome}}</strong></a></h3>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>

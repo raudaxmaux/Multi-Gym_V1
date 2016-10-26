@@ -1,4 +1,4 @@
-/**
+je/**
  * AngularJS Google Maps Ver. 1.17.3
  *
  * The MIT License (MIT)

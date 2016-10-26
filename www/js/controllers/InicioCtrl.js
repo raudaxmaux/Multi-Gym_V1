@@ -2,25 +2,27 @@
 
 angular.module('starter').controller('InicioCtrl', InicioCtrl);
 
-function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $ionicPopup, $cordovaGeolocation, $ionicPlatform, $http, acadFactory){
+function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $ionicPopup, $cordovaGeolocation, $ionicPlatform, $http, acadFactory, NgMap, geoPos){
 
  
     $scope.$on("$ionicView.enter", function(event, data){
        // handle event
        $scope.$parent.showHeader();
-
-       if($rootScope.lat && $rootScope.long){
-		  	console.log("Já tinha pego");       		
-       		$scope.academyGeoRequest();
-       }else{
-		var options = {timeout: 10000, enableHighAccuracy: true, maximumAge: 0};
+/*
+		var options = {timeout: 20000, enableHighAccuracy: true};
  
   		$cordovaGeolocation.getCurrentPosition(options).then(function(position){
 
-		  		console.log("peguei");
+		  		console.log(position);
 		  		$rootScope.lat = position.coords.latitude;
 		  		$rootScope.long = position.coords.longitude;
-		  		$scope.academyGeoRequest();
+  
+          if($rootScope.lat && $rootScope.long){
+                  NgMap.getMap("primeiro").then(function(map) {
+                    $scope.map = map;
+                  });
+                 $scope.academyGeoRequest();             
+          }      
 
 		  }, function(error){
 		  		console.log(error);
@@ -28,12 +30,18 @@ function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMot
                 $scope.tipPopUp('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');
 
 		  });
-
-  		};
-
-
-
+*/
+    if(geoPos){
+      console.log(geoPos)
+          $rootScope.lat = geoPos.coords.latitude;
+          $rootScope.long = geoPos.coords.longitude;
+          $scope.academyGeoRequest();                    
+    }else{
+                $scope.tipPopUp('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');      
+    }
     });
+
+
 		  
 
     $scope.academyGeoRequest = function(){		
@@ -48,10 +56,11 @@ function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMot
                 console.log($rootScope.transpott);
 
 	                $scope.frontAcads = acadFactory.fitByCity($rootScope.transpott.cidade);
-                setTimeout(function() {
-	                console.log($scope.frontAcads);
-                }, 2000);
-                              
+
+                NgMap.getMap("primeiro").then(function(map) {
+                  $scope.map = map;
+                });                  
+
            },function(error){
                 console.log("Não foi possível achar as academias");
                 $scope.tipPopUp('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');
@@ -62,7 +71,7 @@ function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMot
             console.log($scope.usuarioAtivo);
 
     $scope.throwAcad = function(id){
-    	console.log("Monte aqui minhas academia! "+id )
+    	console.log("Monte aqui minhas academias! "+id )
     };
 
 
@@ -78,5 +87,15 @@ $scope.tipPopUp = function(titulo, msg) {
      template: $scope.msg
    });
  };
+
+
+    $scope.mostraMe = function(evt, chave){
+      console.log(chave);
+      $scope.resultado = $scope.frontAcads[chave];
+      console.log($scope.resultado)
+      console.log($scope.resultado.nome)
+      $scope.map.showInfoWindow('mostra', this);     
+    }
+    
 
 };
