@@ -5,7 +5,7 @@ angular
 	.module('starter')
 	.factory('FireAuth', FireAuth);
 
-function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeout, accessFactory, Utils, $cordovaFacebook, $geofire, $http){
+function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeout, accessFactory, Utils, $cordovaFacebook){
 	var auth = $firebaseAuth();
 	var data_de_Adesao = Date.now();
 	var FB_data = {};
@@ -17,8 +17,6 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 		signFB: signFB,
 		insertMailPass: insertMailPass,
 		isLoggedIn: isLoggedIn,
-		updateLogin: updateLogin,
-		geoCatcher: geoCatcher,
 		pegaUser: pegaUser
 	}
 	return usuario;
@@ -27,7 +25,7 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 
 
 	function register(user) {
-			var non_novus = user 
+			var usos = user;
 			Utils.show();
 	      	auth.$createUserWithEmailAndPassword(user.email, user.password).then(function(firebaseUser){
 				console.log(firebaseUser);
@@ -42,28 +40,42 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 					fb_UserId: '',
 					nivel: 6,
 					pagante: false
-				}; 
-				Utils.hide();
-				firebaseUser.updateProfile({
-						displayName: user.nome,
-  						photoURL: ""					
-				})
+				};
 
+					firebaseUser.updateProfile({
+					  displayName: user.nome,
+					  photoURL: ""
+					}).then(function() {
+						console.log("// Update successful");
+					}, function(error) {
+					  // An error happened.
+					});
+				 
+				Utils.hide();
 				insertNewUserFaseUm(aluno);
 
 	      	}).catch(function(error){
 	      		//Utils.hide();
-	      		console.log("Já existe em Registro");
+	      		console.log("Erro em Registro");
 	      		console.log(error);
 	      		if(error.code == "auth/email-already-in-use"){
 	      			//Utils.alertshow("Erro", "Já existe um usuário com este email")
 					//Utils.hide();
-					usuario.login(non_novus);
-	      		}      		
+					usuario.login(usos)
+	      		}
+	      		if(error.code == "auth/invalid-email"){
+	      			Utils.alertshow("Erro", "Verifique se é um e-mail válido");
+					Utils.hide();	      			
+	      		}	      		      		
 
 	      	});
 
 	    }
+
+		function logino(user){
+			console.log(user)	
+			console.log("partindo pros logins porque já existo")	
+		}	    
 
 	    function login(user) {
 	      auth.$signInWithEmailAndPassword(user.email, user.password).then(function(firebaseUser){
@@ -92,7 +104,6 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 	    	var saiSucesso = function(){
 		      console.log("desconectou") 		
 	    	}
-
 	    	var saiFalha = function(){
 		      console.log("ainda não desconectou") ;   			    		
 	    	}
@@ -104,10 +115,8 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 			auth.$onAuthStateChanged(function(user){
 				if(user){
 					return true;
-					console.log("ainda logado")
 				}else{
 					return false;
-					console.log("não logado")
 				};
 	    	});
 		}
@@ -123,8 +132,9 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 				}else{
 					console.log("Não está conectado, então conecta-se a partir daqui.");
 			    	$cordovaFacebook.login(["public_profile", "email", "user_friends"]).then(function(response) {
-					      console.log(response.status);
-		 				if(response.status === 'connected'){
+					      console.log(response.status + " mais de baixo.");
+		 				if(response.status === "connected"){
+		 					console.log(response)
 							fireStuff(response)	 
 
 		 				}else{
@@ -156,10 +166,7 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 							nivel: 6,
 							pagante: false
 						};
-						FB_data = fbaluno;
-
-						
-
+						FB_authdata = fbaluno;
 
 						console.log("///////////////////////////");
 						console.log(authData.providerData[0].uid);
@@ -169,7 +176,7 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 
  					}).catch(function(error){
  						console.log("Erro em Registro com Facebook");
- 						console.log(error.code);
+ 						console.log(error);
  						if(error.code === "auth/account-exists-with-different-credential"){
  							Utils.alertshow("Usuário já existente", "Você já se cadastrou com email/senha");
  						}else{
@@ -200,35 +207,35 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 
 		function insertNewUserFaseDois(bje, fb_track, exists){
 			console.log("fase Dois")
-			
+
 			 if (exists) {
 			 	console.log("existe");
 
 		    	$timeout(function() {
 				 	if(bje.fbSign !== false)
 				 	{
-				 		//if(fb_track.photoURL !== bje.photoURL){
-				 			//console.log("a imagem não é igual")
-				 			//changePhotoURL(bje.photoURL);
-				 			//console.log("troca a imagem")
+				 		if(fb_track.photoURL !== bje.photoURL){
+				 			console.log("a imagem não é igual")
+				 			changePhotoURL(bje.photoURL);
+				 			console.log("troca a imagem")
 
-				 		//else{
-					 		//console.log("a imagem é igual")				 			
+				 		}else{
+					 		console.log("a imagem é igual")				 			
 				 			segue_o_seco();
-				 		//};
-				 	//}else{
-				 	//	console.log("nenhuma imagem");
-				 	//	segue_o_seco();
+				 		};
+				 	}else{
+				 		console.log("nenhuma imagem");
+				 		segue_o_seco();
 				 	};				
 				}, 300);
 	
 			  } else {
 			    console.log("ainda não está registrado no Firebase");			  	
-			    insertMailPass(bje);
+			    insertMailPass(bje, fb_track);
 			  }			
 		};
 
-	    function beyondMailPass(uid){
+	    function beyondMailPass(uidtracks){
 			segue_o_seco();
 		}
 
@@ -270,43 +277,9 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 
     };
 
-//////////////////////////////  A partir daqui somente update do cliente
 
 
-    function updateLogin(dados){
-    	var entrada = dados.uid;
-    	var data = dados;
-    	delete data.$id;
-    	delete data.$priority;
-    	console.log(data);
-		console.log(entrada)
-		var dataRef = accessFactory.pegaUsuario(entrada);
-		dataRef.update(data).then(function(success){
-			$rootScope.$broadcast("updateDone");
-			var placeToPoint = data.endereco +" "+ data.numero +" "+ data.bairro +" "+ data.cidade;
-			console.log(placeToPoint);		
-			usuario.geoCatcher(placeToPoint, entrada)
-		}, function(error){
-			console.log("não deu")
-			console.log(error);
-		})
-    };
 
-    function geoCatcher(ender, idUser) {
-			$http.get('http://maps.google.com/maps/api/geocode/json?address='+ ender).success(function(mapData) {
-                var geopos = mapData.results[0].geometry.location;
-                console.log(geopos);
-                var $geo = $geofire(accessFactory.pegaUserHome());
-		       		$geo.$set(idUser,[geopos.lat, geopos.lng]).then(function(success){
-		       			console.log("deu certo!");
-		       		}).catch(function(error){
-						console.log("não deu certo!");
-						console.log("erro: "+ error);		       			
-		       		})
-             },function(error){
-                console.log("Não foi possível salvar o posicionamento");             
-             });
-    }
 	
 	};// fim service_Auth - ATENÇÃO!!!
 })();//fum da função geral JS - ATENÇÃO!!!

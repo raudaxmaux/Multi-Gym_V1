@@ -19,9 +19,11 @@ function LogOutCtrl($scope, $rootScope, $location, $stateParams, $timeout, ionic
 
 
 $scope.logout = function(){
-      //FireAuth.logout();
-      //$scope.$parent.hereGoes = false;
+      console.log("fechou")
+      FireAuth.logout();
+      $scope.$parent.hereGoes = false;
       //$location.path("app/login_inicial");
+      delete $rootScope.usuarioAtivo;
       ionic.Platform.exitApp();
     }
 

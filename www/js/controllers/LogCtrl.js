@@ -9,51 +9,33 @@ function LogCtrl($scope, $rootScope, $location, $stateParams, $timeout, ionicMat
       password: ''
     };
 
-    $scope.isLogged = false;
+    $rootScope.isLogged = false;
 
 		$scope.$on("$ionicView.enter", function(event, data){
 		     // handle event
+         console.log("LogCtrl começa");
         $scope.$parent.hideHeader();
-        LocalDB.initLogin();       
-        firebase.auth().onAuthStateChanged(function(user){
-                 console.log('onAuthStateChanged');         
-          $timeout(function() {          
-             if(user){
-                $rootScope.hereGoes = true;
-                console.log('tem usuário');
-                $scope.directUser();
-             }else{
-               $rootScope.hereGoes = false;
-                console.log('não tem usuário');
-            }
-         }, 300);        
-        });
+        LocalDB.initLogin();
 		  });
-
 
     $scope.registro_simples = function(usuario){
       $scope.user.email = usuario.email;
-      $scope.password = usuario.password;
+      $scope.user.password = usuario.password;
 
       FireAuth.register($scope.user);
     }
+
 
     $scope.login_simples = function(usuario){
       $scope.user.email = usuario.email;
       $scope.password = usuario.password;
 
-      FireAuth.login($scope.user);
+      FireAuth.login(usuario);
     }  
 
 
     $scope.faceLogin = function(){
       FireAuth.signFB();
-    }
-
-
-    $scope.logout = function(){
-      FireAuth.logout();
-      $scope.$parent.hereGoes = false;
     }
 
 

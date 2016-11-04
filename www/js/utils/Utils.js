@@ -13,11 +13,11 @@ angular.module('starter').factory('Utils', Utils)
 
     function show() {
       $ionicLoading.show({
-  	    animation: 'fade-in',
+  	    animation: 'none',
   	    showBackdrop: true,
   	    maxWidth: 200,
-  	    showDelay: 500,
-        template: '<p class="item-icon-left">Loading...<ion-spinner icon="lines"/></p>'
+  	    showDelay: 100,
+        template: '<p class="item-icon-left">Carregando...<ion-spinner icon="lines"/></p>'
       });
     };
 
@@ -28,10 +28,8 @@ angular.module('starter').factory('Utils', Utils)
 	function alertshow(tit,msg){
 		var alertPopup = $ionicPopup.alert({
 			title: tit,
+      cssClass: 'popme',     
 			template: msg
-		});
-		alertPopup.then(function(res) {
-      console.log("foi")
 		});
 	};
 

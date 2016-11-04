@@ -1,75 +1,72 @@
 <ion-view view-title="Meu Perfil">
-    <ion-content class="animate-fade-slide-in background">
+    <ion-content class="background">
       <div class="expandex" style="background: url(img/sarados.jpg) center; background-size: cover;">
             <div class="content item-avatar">
-                 <div class="avatar" style="background-image: url('{{usuarioAtivo.photoURL}}');"></div>
-                 <h3 class="energized">{{usuarioAtivo.displayName}}</h3>
+                 <div class="avatar" style="background-image: url('{{usuarioMod.photoURL}}');"></div>
+                 <h3 class="energized">{{usuarioMod.displayName}}</h3>
                  <p  class="energized">Academia FisioApp</p>
             </div>
         </div>
-        </div>
+
         <div class="padding">
-        <ion-list class="animate-blinds">
-          <div class="item item-divider">
-          <h2><strong>Informações Básicas</strong></h2>
-          </div>
-            <!--Nome -->
-            <label class="item item-input item-stacked-label ink">
-                <span class="input-label">Nome</span>
-                <input type="text" placeholder="Nazareth" ng-readonly="true">
-            </label>
-            <!--Sobrenome -->
-            <label class="item item-input item-stacked-label ink">
-                <span class="input-label">Sobrenome</span>
-                <input type="text" placeholder="Nazareth" ng-readonly="true">
-          </label>
-          <!-- Telefone -->
-          <label class="item item-input item-stacked-label ink">
-              <span class="input-label">Telefone</span>
-              <input type="text" placeholder="+55 21 95555-9999" ng-readonly="true">
-          </label>
-          <!-- E-mail -->
-          <label class="item item-input item-stacked-label ink">
-              <span class="input-label">E-mail</span>
-              <input type="text" placeholder="contato@multigym.com.br" ng-readonly="true">
-          </label>
-          <div class="item item-divider">
-            <h2><strong>Endereço</strong></h2>
-          </div>
-        <!-- Rua -->
-        <label class="item item-input item-stacked-label ink">
-            <span class="input-label">Rua</span>
-            <input type="text" placeholder="Rua Moreira César" ng-readonly="true">
-        </label>
-        <!--Numero -->
-        <label class="item item-input item-stacked-label ink">
-            <span class="input-label">Número</span>
-            <input type="text" placeholder="147">
-        </label>
-        <!--Complemento -->
-          <label class="item item-input item-stacked-label ink">
-            <span class="input-label">Complemento</span>
-            <input type="text" placeholder="314">
-          </label>
-          <!--CEP -->
-          <label class="item item-input item-stacked-label ink">
-              <span class="input-label">CEP</span>
-              <input type="text" placeholder="314">
-        </label>
-        <!--Cidade -->
-        <label class="item item-input item-stacked-label ink">
-            <span class="input-label">Cidade</span>
-            <input type="text" placeholder="314">
-      </label>
-      <!--Estado -->
-      <label class="item item-input item-stacked-label ink">
-          <span class="input-label">Estado</span>
-          <input type="text" placeholder="314">
-    </label>
-        </ion-list>
+            <form name="perfilForm" novalidate>
+              <div class="list">
+                  <label class="item item-input item-stacked-label zero plus">
+                    <span class="input-label branca">Avatar</span>
+
+                      <img class="avatar spec_avatar" ng-src="{{theFoto}}">
+
+                    <div>
+                      <button class="button button-positive ink spec_but" ng-click="swapAvatar()">Trocar Avatar</button>  
+                    </div>
+                  </label>
+
+                  <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">Nome</span>
+                    <input class="" type="text" ng-model="usuarioMod.displayName" placeholder="Nome">
+                  </label>  
+                   <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca energized">Email</span>
+                    <input type="text" ng-model="usuarioMod.email" placeholder="Email">
+                  </label>         
+
+                  <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">Telefone (com DDD)</span>
+                    <input type="tel" ng-model="usuarioMod.telefone" placeholder="XX XXXXX-XXXX">
+                  </label>
+                  <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">Cep</span>
+                    <input type="tel" name="cep" ng-model="usuarioMod.cep" placeholder="CEP" via-cep="cep">
+                  </label>
+                  <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">Endereço Residencial</span>
+                    <input type="text" ng-model="usuarioMod.endereco" placeholder="Endereço" via-cep="logradouro" name="logradouro" required>
+                  </label> 
+                  </label>
+                  <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">Número</span>
+                    <input type="text" ng-model="usuarioMod.numero" placeholder="Número" name="numero" required>
+                  </label>
+                    <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">Complemento</span>
+                    <input type="text" ng-model="usuarioMod.complemento" placeholder="Casa, Apto. etc">
+                  </label>
+                   <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">Cidade</span>
+                    <input type="text" ng-model="usuarioMod.cidade" placeholder="Cidade" via-cep="localidade" name="cidade" required>
+                  </label>
+                   <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">Bairro</span>
+                    <input type="text" ng-model="usuarioMod.bairro" placeholder="Bairro" via-cep="bairro" name="bairro" required>
+                  </label>
+                   <label class="item item-input item-stacked-label zero">
+                    <span class="input-label branca">UF</span>
+                    <input type="text" ng-model="usuarioMod.estado" placeholder="UF" via-cep="uf" name="estado" required>
+                  </label>                                       
+              </div>
+                  <button ng-disabled="perfilForm.$invalid" ng-click= "modificar()" class="button button-full button-positive ink" ng-model="LoginBut">Modificar</button>
+            </form>
+      </div>
         </div>
     </ion-content>
-    <button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ng-click="ajuda('Este botão leva à área de edição dos dados.')">
-      <i class="icon ion-plus"></i>
-    </button>
 </ion-view>

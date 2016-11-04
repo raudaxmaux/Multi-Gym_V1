@@ -8,8 +8,7 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
 $scope.userUid = '';
   $scope.userData = [];
 
-  $scope.foto;
-  $scope.nome;
+  $scope.foto = 'img/photoless.jpg';
 
     $scope.$on("$ionicView.enter", function(event, data){
         firebase.auth().onAuthStateChanged(function(user){          
@@ -18,8 +17,12 @@ $scope.userUid = '';
                 $scope.userUid = user.uid;
                 $scope.hereGoes = true;
                 FireAuth.pegaUser($scope.userUid, $scope);
+                //$location.path("app/loginfo");                
             }else{
                 console.log("Sem user");
+                $scope.hereGoes = false;
+                $scope.foto = 'img/photoless.jpg';
+               // $location.path("app/login_inicial");              
             };
         });
 
@@ -33,20 +36,24 @@ $scope.userUid = '';
 
     $rootScope.$on("getUserInfo", function(ev){
         console.log("getUserInfo");
-        console.log($rootScope.usuarioAtivo);
+        //console.log($rootScope.usuarioAtivo);
         //$scope.mandaPerfi($rootScope.usuarioAtivo);
       if($rootScope.usuarioAtivo.photoURL !== '' || $rootScope.usuarioAtivo.photoURL !== undefined){
         $scope.foto = $rootScope.usuarioAtivo.photoURL;
+        console.log("tem foto")
       }else{
-        $scope.foto = 'img/profile-icon.png';
+        console.log("não tem foto")
       }
       if(!$rootScope.usuarioAtivo.displayName){
         $scope.nome = "Olá, visitante";
       }else{
           $scope.nome = $rootScope.usuarioAtivo.displayName;
 
-      }        
+      }
+      console.log("Fiquei bem na foto: " + $scope.foto)           
     })
+
+     
 
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {
@@ -56,7 +63,6 @@ $scope.userUid = '';
     }
     $timeout(function() {
         console.log($scope.hereGoes + " daqui do menu.");
-        
     }, 600);   
     ////////////////////////////////////////
     // Layout Methods
@@ -112,7 +118,7 @@ $scope.userUid = '';
       $timeout(function() {
         $scope.hideHeader();
       }, 0);
-      $location.path("app/login_inicial");
+    //  $location.path("app/loginfo");
     };
 
 

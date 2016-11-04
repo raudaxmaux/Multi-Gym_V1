@@ -10,6 +10,16 @@ angular.module('routes', [])
     controller: 'AppCtrl'
   })
 
+  .state('app.loginfo', {
+    url: '/loginfo',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/getLogInfo.html',
+        controller: 'GetLogInfo'
+      }
+    }
+  }) 
+
   .state('app.login_inicial', {
     url: '/login_inicial',
     views: {
@@ -72,9 +82,12 @@ angular.module('routes', [])
         }
       },
            resolve:{
-              geoPos: function($rootScope, $cordovaGeolocation){    
+              geoPos: function($rootScope, $cordovaGeolocation, Utils){    
                       return $cordovaGeolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then(function(position){
                         return position;                      
+                      }, function(error){
+                        console.log("GPS desligado.");
+                        Utils.alertshow('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');
                       })
                 }
 
@@ -176,5 +189,5 @@ angular.module('routes', [])
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login_inicial');
+  $urlRouterProvider.otherwise('/app/loginfo');
 });

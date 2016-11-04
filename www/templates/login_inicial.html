@@ -1,26 +1,29 @@
 <ion-view view-title="Login">
   <ion-content style="background: url(img/front.jpg) center; background-size: cover;">
-      <div class="hero no-header flat">
-          <div class="content">
+      <!-- <div class="hero no-header flat"> -->
+          <div class="content" style="margin-top: 60px;">
               <img src="img/MULTI-SHINE.png" style="width: 100%; height: auto;"/>
-          </div>
+         <!--  </div> -->
       </div>
       <div class="padding">
-      <div class="list" ng-hide="hereGoes">
+      <div class="list">
+          <ion-md-input placeholder="Nome" highlight-color="balanced" type="text" ng-model="user.nome"></ion-md-input>
           <ion-md-input placeholder="Email" highlight-color="balanced" type="text" ng-model="user.email"></ion-md-input>
           <ion-md-input placeholder="Password" highlight-color="energized" type="text" ng-model="user.password"></ion-md-input>
-      </div>
+
     </div>
-    <div class="padding">
-      <div class="the_padding"  ng-hide="hereGoes" >
-          <button ng-click= "login_simples(user)" class="button button-full button-balanced ink" ng-model="LoginBut">Login</button>
+
+      <div class="the_padding" >
+          <button ng-click= "registro_simples(user)" class="button button-full button-balanced ink" ng-model="LoginBut">Login/Cadastro</button>
       </div>
-         <div class="the_padding" ng-hide="hereGoes" >
+      <!--  <div class="the_padding" ng-hide="hereGoes" >
           <button ng-click= "registro_simples(user)"  class="button button-full button-assertive ink">Registrar-se</button>
-          </div>         
-      <div class="the_padding" ng-hide="hereGoes" >
-          <button ng-click= "faceLogin('Facebook')" class="button button-full button-border icon-center ion-social-facebook button-positive-900">  Login com Facebook</button>
+          </div>  -->        
       </div>
-      </div>
+    
   </ion-content>
+         <div class="button-bar social-login" style="position: absolute; bottom: 0px; width: 100%">
+            <button class="button button-small button-border icon-left ion-social-google button-assertive-100">Google+</button>
+            <button ng-click= "faceLogin()"  class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
+        </div>   
 </ion-view>

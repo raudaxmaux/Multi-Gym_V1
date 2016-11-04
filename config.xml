@@ -17,6 +17,7 @@
   <preference name="FadeSplashScreenDuration" value="0"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
+  <preference name="AndroidPersistentFileLocation" value="Compatibility"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
@@ -24,4 +25,6 @@
     <variable name="APP_ID" value="1677347842587839"/>
     <variable name="APP_NAME" value="MultiGymLogin"/>
   </plugin>
+  <allow-navigation href="http://192.168.103.2:8100"/>
+  <allow-navigation href="http://192.168.25.221:8100"/>
 </widget>

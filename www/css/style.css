@@ -144,6 +144,8 @@ margin-top: 35px;
   margin-bottom: 15px;
 }
 
+
+
 /* Thumbnails de Academias
 ==================================*/
 .tento{
@@ -285,4 +287,56 @@ background-size: cover;
 
 .tab-item{
   max-width: 800px;
+}
+
+
+
+div.popup-container .popme{
+  color: #00000;
+}
+
+.popup-title h3{
+  color: #00000;
+}
+
+.popme .popup-title {
+    color: #222;
+    font-weight: bold;
+}
+
+.popme .popup-body {
+    color: #222;
+}
+
+/* Perfil Completo
+==================================*/
+
+.zero{
+  padding-left: 0;
+}
+
+.plus{
+  height: 130px;
+}
+
+.zero input{
+  background-color: #737373;
+}
+
+.branca{
+    color: #fff;
+    font-weight: bold;
+}
+
+.spec_avatar{
+  margin-top: 40px;
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+}
+
+.spec_but{
+  margin-top: 35px;
+  margin-left: 150px;
+    display: inline-block;
 }
