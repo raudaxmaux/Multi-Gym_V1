@@ -3,9 +3,7 @@
 angular.module('starter').controller('InicioCtrl', InicioCtrl);
 
 function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $ionicPopup, $cordovaGeolocation, $ionicPlatform, $http, acadFactory, NgMap, geoPos, Utils){
-
- 
-    $scope.$on("$ionicView.enter", function(event, data){
+          $scope.$on("$ionicView.enter", function(event, data){
        // handle event
        $scope.$parent.showHeader();
 

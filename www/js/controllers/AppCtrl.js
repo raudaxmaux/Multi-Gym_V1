@@ -14,7 +14,7 @@ $scope.userUid = '';
         firebase.auth().onAuthStateChanged(function(user){          
             if(user){
                 console.log("com user");
-                $scope.userUid = user.uid;
+                $scope.userUid = user.uid;           
                 $scope.hereGoes = true;
                 FireAuth.pegaUser($scope.userUid, $scope);
                 //$location.path("app/loginfo");                
@@ -30,16 +30,17 @@ $scope.userUid = '';
     });
 
 
+    
     ////////////////////////////////////////
     // Pega Caras
     ////////////////////////////////////////
 
     $rootScope.$on("getUserInfo", function(ev){
         console.log("getUserInfo");
-        //console.log($rootScope.usuarioAtivo);
-        //$scope.mandaPerfi($rootScope.usuarioAtivo);
+        $rootScope.unregistered = $rootScope.usuarioAtivo.pagante;     
       if($rootScope.usuarioAtivo.photoURL !== '' || $rootScope.usuarioAtivo.photoURL !== undefined){
         $scope.foto = $rootScope.usuarioAtivo.photoURL;
+
         console.log("tem foto")
       }else{
         console.log("não tem foto")
@@ -146,6 +147,11 @@ $scope.userUid = '';
           $scope.nome = Arraial.displayName;
 
       }
+    };
+
+
+    $scope.join = function(){
+      console.log("Este botão é para juntar-se ao clube")
     };
 
 

@@ -66,7 +66,10 @@
               </div>
                   <button ng-disabled="perfilForm.$invalid" ng-click= "modificar()" class="button button-full button-positive ink" ng-model="LoginBut">Modificar</button>
             </form>
-      </div>
         </div>
+        <div ng-hide="unregistered" ng-style="pad-signature">&nbsp;</div>
     </ion-content>
+    <div class="lowbar background" ng-hide="unregistered">
+      <button class="button button-full button-energized-900 noneblock" ui-sref="app.registro"><i class="ion-unlocked"></i> Registrar-se</button>
+    </div> 
 </ion-view>

@@ -123,8 +123,9 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 				}else{
 					console.log("Não está conectado, então conecta-se a partir daqui.");
 			    	$cordovaFacebook.login(["public_profile", "email", "user_friends"]).then(function(response) {
-					      console.log(response.status);
-		 				if(response.status === 'connected'){
+					      console.log(response.status + " mais de baixo.");
+		 				if(response.status === "connected"){
+		 					console.log(response)
 							fireStuff(response)	 
 
 		 				}else{

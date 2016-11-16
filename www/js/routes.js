@@ -71,7 +71,15 @@ angular.module('routes', [])
       }
     })
 
-
+    .state('app.registro', {
+      url: '/registro',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/registro.html',
+          controller: 'RegisterCtrl'
+        }
+      }
+    })
 
     .state('app.inicio', {
       url: '/inicio',
@@ -81,17 +89,17 @@ angular.module('routes', [])
           controller: 'InicioCtrl'
         }
       },
-           resolve:{
-              geoPos: function($rootScope, $cordovaGeolocation, Utils){    
-                      return $cordovaGeolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then(function(position){
-                        return position;                      
-                      }, function(error){
-                        console.log("GPS desligado.");
-                        Utils.alertshow('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');
-                      })
-                }
+       resolve:{
+          geoPos: function($rootScope, $cordovaGeolocation, Utils){    
+                  return $cordovaGeolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then(function(position){
+                    return position;                      
+                  }, function(error){
+                    console.log("GPS desligado.");
+                    Utils.alertshow('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');
+                  })
+            }
 
-              }         
+        }         
     })    
 
         .state('app.perfilcompleto', {

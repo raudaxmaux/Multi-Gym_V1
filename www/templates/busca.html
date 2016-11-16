@@ -15,6 +15,10 @@
       </div>
     <!--   <div class="padding">
           <button ui-sref="app.mapa" class="button button-full button-assertive ink">Busca pelo mapa</button>
-      </div> -->     
+      </div> --> 
+  <div ng-hide="unregistered" ng-style="pad-signature">&nbsp;</div>    
   </ion-content>
+    <div class="lowbar background" ng-hide="unregistered">
+      <button class="button button-full button-energized-900 noneblock" ui-sref="app.registro"><i class="ion-unlocked"></i> Registrar-se</button>
+    </div> 
 </ion-view>

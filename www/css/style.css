@@ -340,3 +340,30 @@ div.popup-container .popme{
   margin-left: 150px;
     display: inline-block;
 }
+
+.lowbar{
+  background: #444;
+  width: 100%;
+  height: 44px;
+  border-bottom: none;
+  padding: 0;
+  z-index: 2;
+  display: flex;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;    
+}
+
+.button.button-full.noneblock{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+/* ng-style para subir ao botão de cadastro
+==================================*/
+
+.pad-signature{
+  padding-bottom: 88px !important;
+}
