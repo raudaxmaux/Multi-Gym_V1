@@ -367,3 +367,12 @@ div.popup-container .popme{
 .pad-signature{
   padding-bottom: 88px !important;
 }
+
+.super{
+  z-index: 999;
+}
+
+
+.minus-pad-top{
+  top: 33px;
+}

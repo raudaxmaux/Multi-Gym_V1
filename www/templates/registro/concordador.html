@@ -1,0 +1,18 @@
+<ion-content padding="true" class="minus-pad-top">
+    <div class="padding text-center">
+			<h3><strong>A {{parceiro.nome}} foi escolhida para você pelo critério de proximidade de sua residência.</strong></h3>
+	 		<p>Os valores a serem debitados de seu cartão de crédito mensalmente são:</p>
+	 		<p>Os valores a serem debitados de seu cartão de crédito mensalmente são:</p>
+	 		<div class="row">
+  	<div class="col col-50"><h3><strong>Mensalidade Academia:</strong></h3> <button class="button button-energized-900 ink">R$ XX,xx</button></div>
+	<div class="col col-50"><h3><strong>Mensalidade Multigym:</strong></h3> <button class="button button-energized-900 ink">R$ XX,xx</button></div>
+</div>
+	 		
+    </div>
+         <div class="padding">
+            <form name="agreedForm" novalidate>
+            <ion-checkbox ng-model="isChecked" class="dark" required>Aceito os Termos e Condições do aplicativo</ion-checkbox>
+                   <button ng-disabled="agreedForm.$invalid" ng-click= "vemPraCa()" class="button button-full button-energized-900 ink" ng-model="LoginBut">Modificar</button>           
+            </form>
+		</div> 
+</ion-content>    

@@ -283,7 +283,6 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 		console.log(entrada)
 		var dataRef = accessFactory.pegaUsuario(entrada);
 		dataRef.update(data).then(function(success){
-			$rootScope.$broadcast("updateDone");
 			var placeToPoint = data.endereco +" "+ data.numero +" "+ data.bairro +" "+ data.cidade;
 			console.log(placeToPoint);		
 			usuario.geoCatcher(placeToPoint, entrada)
@@ -300,6 +299,8 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
                 var $geo = $geofire(accessFactory.pegaUserHome());
 		       		$geo.$set(idUser,[geopos.lat, geopos.lng]).then(function(success){
 		       			console.log("deu certo!");
+						$rootScope.$broadcast("updateDone");		       			
+		       			console.log(success)
 		       		}).catch(function(error){
 						console.log("não deu certo!");
 						console.log("erro: "+ error);		       			

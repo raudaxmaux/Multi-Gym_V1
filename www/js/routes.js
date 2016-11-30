@@ -81,6 +81,26 @@ angular.module('routes', [])
       }
     })
 
+    .state('app.registro_continua', {
+      url: '/registro_continua',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/registro_continua.html',
+          controller: 'RegisterNextCtrl'
+        }
+      }
+    })
+
+    .state('app.registro_final', {
+      url: '/registro_final',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/registro_final.html',
+          controller: 'RegisterFinalCtrl'
+        }
+      }
+    })    
+
     .state('app.inicio', {
       url: '/inicio',
       views: {

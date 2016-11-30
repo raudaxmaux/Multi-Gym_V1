@@ -1,4 +1,7 @@
 <ion-view view-title="Início">
+    <div class="lowbar  background" ng-hide="unregistered">
+      <button class="button button-full button-energized-900 noneblock super" ui-sref="app.registro"><i class="ion-unlocked"></i> Registrar-se</button>
+    </div>
     <ion-content ng-class="background"  class="background">
       <div class="expandex" style="background: url(img/topomenu.jpg) center; background-size: cover;">
             <div class="padding">
@@ -21,11 +24,10 @@
                     </ion-tab>
                 </ion-tabs>
                </div>
-        <div ng-hide="unregistered" ng-style="pad-signature">&nbsp;</div>
-    </ion-content>
-    <div class="lowbar background" ng-hide="unregistered">
-      <button class="button button-full button-energized-900 noneblock" href="app.registro"><i class="ion-unlocked"></i> Registrar-se</button>
-    </div>
+          </ion-content>           
+
        <button id="fab-profile" ng-show="false" class="button button-fab button-fab-bottom-right button-energized-900" ui-sref="app.cidades">
       <i class="icon ion-arrow-return-left"></i>
+      </button>
+
 </ion-view>

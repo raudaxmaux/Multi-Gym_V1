@@ -17,7 +17,7 @@ angular.module('starter').factory('Utils', Utils)
   	    showBackdrop: true,
   	    maxWidth: 200,
   	    showDelay: 100,
-        template: '<p class="item-icon-left">Carregando...<ion-spinner icon="lines"/></p>'
+        template: '<p class="item-icon-left"><ion-spinner icon="lines"/> Carregando...</p>'
       });
     };
 

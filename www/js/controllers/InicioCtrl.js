@@ -11,7 +11,9 @@ function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMot
       console.log(geoPos)
           $rootScope.lat = geoPos.coords.latitude;
           $rootScope.long = geoPos.coords.longitude;
-          $scope.academyGeoRequest();                    
+          $scope.academyGeoRequest();
+          console.log("abre!")
+          Utils.show();                    
     }else{
                 //Utils.alertshow('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');      
     }
@@ -35,9 +37,13 @@ function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMot
 
                 NgMap.getMap("primeiro").then(function(map) {
                   $scope.map = map;
+                  console.log("fecha!")
+                  Utils.hide();
                 });                  
 
            },function(error){
+                console.log("fecha!")
+                Utils.hide();
                 console.log("Não foi possível achar as academias");
                 //$scope.tipPopUp('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');
                 //Utils.alertshow('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');
@@ -50,6 +56,8 @@ function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMot
 
     $scope.throwAcad = function(id){
     	console.log("Monte aqui minhas academias! "+id )
+                      console.log("fecha!")
+                Utils.hide();
     };
 
 

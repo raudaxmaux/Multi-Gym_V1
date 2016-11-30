@@ -112,6 +112,7 @@ function PerfilCompCtrl($scope, $rootScope, $ionicPlatform, $timeout, $statePara
 
 
     $scope.modificar = function(){
+        Utils.show();
         console.log("salvando");
         $scope.saved = true;
         if($scope.changedPhoto){
@@ -124,6 +125,7 @@ function PerfilCompCtrl($scope, $rootScope, $ionicPlatform, $timeout, $statePara
     };
 
       $rootScope.$on('updateDone', function (event) {
+          Utils.hide();
           Utils.alertshow('Sucesso', 'Dados gravados com sucesso.');
       });
 

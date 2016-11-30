@@ -2,7 +2,7 @@
 
 angular.module('starter').controller('MapaCtrl', MapaCtrl);
 
-function MapaCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $cordovaGeolocation, NgMap, $geofire, accessFactory){
+function MapaCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, $cordovaGeolocation, NgMap, $geofire, accessFactory, Utils){
 
     $scope.searchResults = [];
     
@@ -11,16 +11,17 @@ function MapaCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotio
        $scope.$parent.showHeader();
        $scope.$parent.mc_Lovin();
        console.log("mapas!!!");
+  
     });
 
 
     
     
     var $geo = $geofire(accessFactory.pegaMapeamento());
-
+    
     var options = {timeout: 20000, enableHighAccuracy: true};  
     $cordovaGeolocation.getCurrentPosition(options).then(function(position){
-      
+      Utils.show();
       $scope.coords = {
         lat: position.coords.latitude,
         long: position.coords.longitude
@@ -38,12 +39,13 @@ function MapaCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotio
           var obje = {key: key, location: location, distance: distance};
           
           console.log("entrou "+ key);
+          console.log("location = "+ location)
+          console.log("distancia = "+ distance)
           var fatUser = accessFactory.pegaAcademiaUnica(key);
           fatUser.once('value').then(function(snapshot) {
             obje.info = snapshot.val();
             $scope.searchResults.push(obje);
-          });
-          console.log($scope.searchResults)  
+          }); 
       });
 
         NgMap.getMap("radial").then(function(map) {
@@ -53,6 +55,7 @@ function MapaCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotio
     
     }, function(error){
       console.log("Could not get location");
+      Utils.hide();
     });
 
 
@@ -66,6 +69,7 @@ function MapaCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotio
 
       $scope.$on('mapInitialized', function (event, map) {
           console.log("mapa inicializado em proximidade")
+          Utils.hide();
       });
 
 
