@@ -17,6 +17,7 @@ function service_Register($rootScope, $firebaseObject, $location, $timeout, Util
 		console.log("start nearest");
 		var regRef = accessFactory.pegaOneUserHome(user);
 		regRef.once('value').then(function(snapshot){
+		console.log("peguei")	
 		objUser =  snapshot.val();
 			dadosiniciais = objUser;
 			$rootScope.$broadcast("ENVIARESIDENCIA", dadosiniciais);

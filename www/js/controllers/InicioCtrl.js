@@ -13,7 +13,7 @@ function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMot
           $rootScope.long = geoPos.coords.longitude;
           $scope.academyGeoRequest();
           console.log("abre!")
-          Utils.show();                    
+          Utils.hide();                    
     }else{
                 //Utils.alertshow('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');      
     }

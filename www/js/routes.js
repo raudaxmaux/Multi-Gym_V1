@@ -112,8 +112,10 @@ angular.module('routes', [])
        resolve:{
           geoPos: function($rootScope, $cordovaGeolocation, Utils){    
                   return $cordovaGeolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then(function(position){
+                    Utils.show();
                     return position;                      
                   }, function(error){
+                    Utils.hide();
                     console.log("GPS desligado.");
                     Utils.alertshow('Sem academias', 'Academias não encontradas. Verifique se seu GPS está ativado.');
                   })

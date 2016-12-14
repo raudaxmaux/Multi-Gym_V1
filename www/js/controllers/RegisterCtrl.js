@@ -61,10 +61,10 @@ function RegisterCtrl($scope, $rootScope, $location, $timeout, $geofire, ionicMa
 	};
 
     $scope.getOrder = function(){
+    		console.log("$scope.getOrder inicializado")
 
           $scope.closer = $filter('orderBy')($scope.nearHome, 'distance');
           $scope.closer.length = 1;
-          
           var finalUser = accessFactory.pegaAcademiaUnica($scope.closer[0].key);
           finalUser.once('value').then(function(snapshot) {
             $scope.closer[0].info = snapshot.val();
@@ -75,15 +75,16 @@ function RegisterCtrl($scope, $rootScope, $location, $timeout, $geofire, ionicMa
      $scope.transformer = function(){
             $scope.closest = $scope.closer[0];
             service_Register.passingData = $scope.closest;
-			$timeout(function(){
+
 				
 				$scope.fuga()        
-			}, 3000);
+
     }
 
 
     $scope.fuga = function(){
     		Utils.hide();
+    		 console.log(service_Register.passingData);
 			$location.path("app/registro_continua")
     };   	
 

@@ -40,13 +40,23 @@
       var dataRef = accessFactory.pegaUsuario($scope.usuarioAtivo.uid);
       dataRef.update(modsFinais).then(function(success){
           console.log("update done")
-          Utils.hide();
-          $location.path("app/registro_final")
+          $scope.massification();
       },function(error){
           Utils.hide();
       });
     };
 
+
+    $scope.massification = function(){
+        var adesao = Date.now();
+        var objeIns = {
+          data_de_adesao: adesao
+        }
+        var join = accessFactory.pegaAqueleAlunoEmAcademia($scope.partnerKey+"/"+$scope.usuarioAtivo.uid)
+        join.update(objeIns);
+        Utils.hide();
+        $location.path("app/registro_final")      
+    }
 
        // $scope.theBasics();
 /////////////// modal
