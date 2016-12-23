@@ -16,6 +16,7 @@
 		var homePath = firebase.database().ref("usuario_home_position");				
 		var treinosPath = firebase.database().ref("treinos");
 		var acadCounterPath = firebase.database().ref("acad_alunos");
+		var agendaPath = firebase.database().ref("agendamentos");
 		var nakedPath = firebase.database();		
 		
 		var accessBack = {
@@ -48,8 +49,8 @@
 			return academyPath;
 		}
 
-		function pegaAgendamento(key){
-			return treinosPath.child(key);
+		function pegaAgendamento(){
+			return agendaPath;
 		};
 
 		function pegaMapeamento(){

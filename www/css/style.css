@@ -376,3 +376,38 @@ div.popup-container .popme{
 .minus-pad-top{
   top: 33px;
 }
+
+
+/* style botão de marcação de treino
+==================================*/
+.hero > .marcador{
+  padding-top: 5px;
+  padding-right: 5px;
+  text-align: right !important;
+}
+
+.hero > .marcador > .button{
+  line-height: 19px !important;
+  opacity: 0.7 !important;
+  border-radius: 50px !important;
+  font-size: 10px;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.ionic_datepicker_popup .calendar_grid {
+  color: #000;
+}
+
+.ionic_timepicker_popup .row{
+ color: #000;  
+}
+
+.enpower {
+  background-color: #aaa;
+}
+
+.obs{
+  background: transparent;
+}

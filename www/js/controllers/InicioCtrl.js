@@ -73,6 +73,10 @@ function InicioCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMot
       console.log($scope.resultado.nome)
       $scope.map.showInfoWindow('mostra', this);     
     }
+
+    $scope.schedMeSoon = function(){
+         console.log($rootScope.usuarioAtivo.$id)     
+    };  
     
 
 };

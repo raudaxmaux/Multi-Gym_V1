@@ -1,6 +1,7 @@
 <ion-view view-title="{{parceiro.nome}}">
     <ion-content ng-class="background"  class="background">
             <div class="hero" style="background-image: url('{{parceiro.fotos.foto1.url}}');" ui-sref="app.academia({id: acad.$id})">
+                <div class="marcador" ng-show="unregistered"><button class="button button-small dark" ng-click="schedMe()"><i class="ion-android-calendar"></i> Agendar</button></div>
                 <div class="content">
                     <div class="avatar" style="background-image: url('{{parceiro.logo.url}}');"></div>
                     <div  class="padding_top exquisite">

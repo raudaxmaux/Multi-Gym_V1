@@ -198,13 +198,22 @@ angular.module('routes', [])
   })
 
   .state('app.agendar_treinos', {
-    url: '/agendar_treinos',
+    url: '/agendar_treinos/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/agendar_treinos.html',
         controller: 'Agendar_treinosCtrl'
       }
-    }
+    },
+        resolve: {
+              outAcad: function(accessFactory, $stateParams){
+                  console.log($stateParams.id)
+                  var locomia = accessFactory.pegaAcademiaUnica($stateParams.id);
+                  return locomia.once("value").then(function(snapshot){              
+                    return snapshot.val();
+                  })              
+              }
+        }  
   })
 
    .state('app.mapa', {

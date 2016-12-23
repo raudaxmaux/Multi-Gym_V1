@@ -1,7 +1,8 @@
 <div padding="false" style="top: 60px; margin-top: 49px;">
         <div ng-repeat="acad in frontAcads">
-            <div class="hero" style="background-image: url('{{acad.fotos.foto1.url}}');" ui-sref="app.academia({id: acad.$id})">
-                <div class="content">
+            <div class="hero" style="background-image: url('{{acad.fotos.foto1.url}}');">
+                <div class="marcador" ng-show="unregistered"><button class="button button-small dark" ui-sref="app.agendar_treinos({id: acad.$id})"><i class="ion-android-calendar"></i> Agendar</button></div>
+                <div class="content" ui-sref="app.academia({id: acad.$id})">
                     <div class="avatar" style="background-image: url('{{acad.logo.url}}');"></div>
                     <div  class="padding_top exquisite">
                     <h3><a class="energized"><strong>{{acad.nome}}</strong></a></h3>

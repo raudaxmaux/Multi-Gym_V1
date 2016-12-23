@@ -8,7 +8,6 @@
 	       // handle event
 	       $scope.$parent.showHeader();
 	       $scope.usuarioAtivo = $rootScope.usuarioAtivo;
-	  
 	       
 	    	});
 	    $scope.$on("$ionicView.leave", function(event){
@@ -34,6 +33,11 @@
 			$scope.fotos = $scope.parceiro.fotos;
 
 		}
+
+      $scope.schedMe = function(){
+        console.log($rootScope.usuarioAtivo.$id)
+      };
+
 
         $scope.theBasics();
 /////////////// modal
