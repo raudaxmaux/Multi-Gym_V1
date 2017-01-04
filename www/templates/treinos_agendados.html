@@ -3,8 +3,39 @@
   <div class="item item-divider">
     <h2 class="text-center padding energized">Próximos treinos agendados</h2>
  </div>
- <div class="list card dark-bg ink ink-dark">	
+ 
+      <div ng-repeat="treinos in treinosAgora" class="card dark-bg ink ink-dark">
+        <div class="item item-avatar">
+            <img ng-src='{{acadDetails("imagem", treinos.academia)}}''>
+            <h2>{{acadDetails("nome", treinos.academia)}}</h2>
+            <p>{{acadDetails("bairro", treinos.academia)}}</p>
+            </div>
+            
+            <div class="item item-body">
+        <h3><strong class="assertiv">Data:</strong> {{treinos.dia | date:'dd/MM/yyyy'}}</h3>
+        <h3><strong>Horário:</strong> {{treinos.hora}}</h3>
+        <h3><strong>Endereço:</strong></h3>
+        <p>{{acadDetails("endereco", treinos.academia)}}</p>
+        <h3><strong>Observações:</strong></h3>
+    <p>
+      {{treinos.obs}}
 
+    </p>
+    </div>
+    <p class="padding" ng-if= 'treinos.dia > diadehoje'>
+
+      <button class="right button button-small button-assertive-900" ng-click="showConfirm01();">
+        Cancelar
+      </button>
+      <button class="right button button-small button-balanced-900" ng-click="showConfirm02();">
+        Remarcar
+      </button>
+  </p>
+      </div> 
+
+
+<!-- 
+ <div class="list card dark-bg ink ink-dark">	
   <div class="item item-avatar">
     <img src="img/logo-best.jpg">
     <h2>Academia Best Fit</h2>
@@ -31,7 +62,7 @@
       </button>
   </p>
 </div>
-<!--  *******************************************************************  -->
+
   <div class="item item-divider">
     <h2 class="text-center padding energized">Treinos antigos</h2>
  </div>
@@ -98,6 +129,7 @@
     </div>
 
 </div>
+-->
         <div ng-hide="unregistered" ng-style="pad-signature">&nbsp;</div>
   </ion-content>
   <button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900" ui-sref="app.agendar_treinos">

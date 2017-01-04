@@ -3,20 +3,38 @@
 angular.module('starter')
 .controller('AppCtrl', AppCtrl);
 
-function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $timeout, FireAuth){
+function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $timeout, FireAuth, AgendarTreino){
      // Form data for the login modal
-$scope.userUid = '';
+  $scope.userUid = '';
   $scope.userData = [];
-
+  $scope.array = [];
+  $scope.agendaDeTreinos = [];
+  $scope.treinoZerado = false;
   $scope.foto = 'img/photoless.jpg';
 
     $scope.$on("$ionicView.enter", function(event, data){
         firebase.auth().onAuthStateChanged(function(user){          
             if(user){
                 console.log("com user");
-                $scope.userUid = user.uid;           
+                $scope.userUid = user.uid;   
+                AgendarTreino.theId = $scope.userUid;     
                 $scope.hereGoes = true;
                 FireAuth.pegaUser($scope.userUid, $scope);
+                if($scope.agendaDeTreinos.length === 0 && !$scope.treinoZerado){
+                  console.log("não entrei antes")
+                  AgendarTreino.arrAgenda($scope.userUid)
+                    $timeout(function(){
+                      $scope.agendaDeTreinos = AgendarTreino.getAgenda();
+                      console.log($scope.agendaDeTreinos)
+                    }, 2000);
+                  if($scope.agendaDeTreinos.length === 0){
+                    $scope.treinoZerado = true;
+                  }else{
+                      console.log("agenda carregada normalmente")                        
+                  }
+                }else{
+                  console.log('Agenda OK')
+                }
                 //$location.path("app/loginfo");                
             }else{
                 console.log("Sem user");
@@ -51,7 +69,10 @@ $scope.userUid = '';
           $scope.nome = $rootScope.usuarioAtivo.displayName;
 
       }
-      console.log("Fiquei bem na foto: " + $scope.foto)           
+      if($rootScope.usuarioAtivo.academia){
+        AgendarTreino.getMyAgenda($scope.userUid, $scope);
+      }
+      console.log("Fiquei bem na foto: " + $scope.foto)      
     })
 
      
@@ -145,7 +166,6 @@ $scope.userUid = '';
         $scope.aviso();
       }else{
           $scope.nome = Arraial.displayName;
-
       }
     };
 
@@ -154,6 +174,33 @@ $scope.userUid = '';
       console.log("Este botão é para juntar-se ao clube")
     };
 
+
+    $scope.$watch("agendamentos", function(newValue, oldValue){
+      var velho = newValue;
+      var keys = Object.keys(velho)
+      var optimus = 
+      console.log(keys.length)
+      console.log(velho)
+      /*
+      angular.forEach(velho, function(element, key) {
+        if(key !== "$id" && key !== "$priority" ){
+          console.log("Hei!")
+          
+        console.log("este "+key)
+        $scope.array.push(element);
+        console.log($scope.array)
+        }
+      //$scope.array.push(element);
+  
+
+      });
+      */
+
+//      console.log("oldValue: "+angular.fromJson(angular.toJson(oldValue)));
+//      console.log("newValue: "+angular.fromJson(angular.toJson(newValue)));
+        //console.log("oldValue: "+angular.toJson(oldValue));
+        //console.log("newValue: "+angular.toJson(newValue));    
+    })
 
 
 };

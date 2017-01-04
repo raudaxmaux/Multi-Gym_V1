@@ -2,7 +2,7 @@
 
 angular.module('starter').controller('Agendar_treinosCtrl', Agendar_treinosCtrl);
 
-function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, ionicDatePicker, ionicTimePicker, outAcad, accessFactory, agendarTreino, Utils){
+function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, ionicDatePicker, ionicTimePicker, outAcad, accessFactory, AgendarTreino, Utils){
 
     $scope.$on("$ionicView.enter", function(event, data){
        // handle event
@@ -82,7 +82,7 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
 				data_requisicao: Date.now(),
 				status: 0
 			};
-   			agendarTreino.saveAgenda(compromisso)
+   			AgendarTreino.saveAgenda(compromisso)
    			Utils.show()
  		};
 

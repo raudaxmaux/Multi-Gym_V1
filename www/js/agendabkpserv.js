@@ -2,8 +2,9 @@
 	'use_strict';
 
 	/**
-	*	AgendarTreino
-	*	Agendamento de treinos
+	*  Module
+	*
+	* Description
 	*/
 
 	angular
@@ -14,39 +15,23 @@
 		// body...
 		var theId = '';
 		var agendStart = accessFactory.pegaAgendamento();
-		var agendaReady = [];
+		var agendaReady = $firebaseArray(agendStart.orderByChild("usuario").equalTo(theId));
 
 		var post_it = {
 			getAgenda: _getAgenda,
-			arrAgenda: _arrAgenda,
 			saveAgenda: _saveAgenda,
 			getMyAgenda: _getMyAgenda
 		};
 		return post_it;
 
 		function _getAgenda() {
+			// para o admin
 			return agendaReady;
 		};
 
-		function _arrAgenda(id) {
-			var acadNotes = accessFactory.pegaAgendamento();
-        	meuAcadNotes = acadNotes.orderByChild("usuario").equalTo(id);
-        	agendaReady = $firebaseArray(meuAcadNotes);
-		}
-
 		function _saveAgenda(agenda) {
 			// body...
-			console.log(agendaReady)
-			console.log(agenda);
-			agendaReady.$add(agenda).then(function(chave){
-				console.log(chave);
-				$rootScope.$broadcast("saved_Sched");
-			}).catch(function(error){
-				console.log("não foi salvo")
-				console.log(error)
-				$rootScope.$broadcast("error_Sched");
-			})
-			/*
+			console.log(agenda)
 			var saveBam = accessFactory.pegaAgendamento()
 			var newSchedule = saveBam.push(angular.fromJson(angular.toJson(agenda))).then(function(success){
 				console.log("foi salvo")
@@ -55,7 +40,6 @@
 				console.log("não foi salvo")
 				$rootScope.$broadcast("error_Sched");
 			})
-			*/
 		}
 
 		function _getMyAgenda(meuId, scope) {
@@ -64,6 +48,7 @@
         var acadNotes = accessFactory.pegaAgendamento();
         var objMaromba = $firebaseObject(acadNotes.orderByChild("usuario").equalTo(meuId));
         objMaromba.$loaded().then(function(){
+        	console.log(objMaromba.length);
         	objMaromba.$bindTo(scope, "agendamentos");
         });			
 		}
