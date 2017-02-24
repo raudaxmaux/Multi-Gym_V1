@@ -2,7 +2,7 @@
 
 angular.module('starter').controller('Treinos_agendadosCtrl', Treinos_agendadosCtrl);
 
-function Treinos_agendadosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, Utils, AgendarTreino, accessFactory){
+function Treinos_agendadosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, Utils, AgendarTreino, accessFactory, $ionicPopup){
 
 $scope.misacads = [];
 
@@ -67,7 +67,7 @@ $scope.showConfirm01 = function() {
         $scope.treinosAgora = $scope.$parent.agendaDeTreinos;
         $scope.treinosAgora.reverse();
         console.log($scope.treinosAgora);
-        $scope.mastermix();          
+        $scope.mastermix();     
        }, 3000);
 
     $scope.acadDetails = function(tipo, idAcad){

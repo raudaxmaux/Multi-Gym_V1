@@ -11,13 +11,17 @@
 	       
 	    	});
 	    $scope.$on("$ionicView.leave", function(event){
-	    	$scope.parceiro = null
+	    	$scope.parceiro = null;
+        $scope.partId = null;
 	    });
       
       console.log("academia chegou!")
-      console.log(unicaAcad)
 
+      //console.log($stateParams.id)
+      //console.log(unicaAcad)
+        $scope.partId = $stateParams.id;
    		  $scope.parceiro = unicaAcad;
+        console.log("parceiro abaixo com id "+$scope.partId)
    		  console.log($scope.parceiro);
 
 

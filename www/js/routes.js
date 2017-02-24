@@ -176,7 +176,7 @@ angular.module('routes', [])
       },
         resolve: {
               unicaAcad: function(accessFactory, $stateParams){
-                  console.log($stateParams.id)
+                  console.log($stateParams.id +" é o ID da academia")
                   var theAcademy = accessFactory.pegaAcademiaUnica($stateParams.id);
                   return theAcademy.once("value").then(function(snapshot){              
                     return snapshot.val();
@@ -209,7 +209,7 @@ angular.module('routes', [])
               outAcad: function(accessFactory, $stateParams){
                   console.log($stateParams.id)
                   var locomia = accessFactory.pegaAcademiaUnica($stateParams.id);
-                  return locomia.once("value").then(function(snapshot){              
+                  return locomia.once("value").then(function(snapshot){
                     return snapshot.val();
                   })              
               }

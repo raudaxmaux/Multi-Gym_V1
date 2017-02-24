@@ -32,7 +32,7 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
        		setLabel: 'OK',
        		todayLabel: 'Hoje',
        		closeLabel: 'Fechar',
-       		weeksList: ["S", "T", "Q", "Q", "S", "S", "D"],
+       		weeksList: ["D", "S", "T", "Q", "Q", "S", "S"],
        		monthsList: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
        		templateType: 'popup',
 			dateFormat: 'dd MMMM yyyy',
