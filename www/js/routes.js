@@ -188,7 +188,7 @@ angular.module('routes', [])
         //novos controllers TREINOS
 
     .state('app.treinos_agendados', {
-      url: '/treinos_agendados',
+      url: '/treinos_agendados/:id',
       views: {
         'menuContent': {
           templateUrl: 'templates/treinos_agendados.html',

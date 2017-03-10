@@ -5,65 +5,78 @@ angular.module('starter').controller('Treinos_agendadosCtrl', Treinos_agendadosC
 function Treinos_agendadosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMaterialMotion, ionicMaterialInk, $firebaseObject, Utils, AgendarTreino, accessFactory, $ionicPopup){
 
 
- $scope.$on("$ionicView.enter", function(event, data){
-         // handle event
+/////////////////////////////////////////
 
-        $scope.$parent.showHeader();
-        $scope.diadehoje = new Date();
-        $scope.vaiMudar = false;
-        $scope.showBut = false;
-  });
+/* CONFIRMAÇÕES */
 
-$rootScope.$on("mudaAgenda", function(ev){
-  if($scope.vaiMudar){
-      $scope.vaiMudar = false;
-      $scope.masterplan()
-  }
-});
+$scope.showConfirm01 = function(ves) {
+    console.log(ves)
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Cancelar Treino',
+     cssClass: 'popme',
+     template: 'Você tem certeza ?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       console.log('You are sure');
+       AgendarTreino.changeAppStatus(ves.$id)
+     } else {
+       console.log('You are not sure');
+     }
+   });
+ };
 
 /////////////////////////////////////////
 
-$scope.masterplan = function(){
-        console.log("em masterplan")
-        var Olaf = 0;
+  $scope.$on("$ionicView.enter", function(event, data){
+         // handle event
+
+       $scope.$parent.showHeader();
+         Utils.show()
         $scope.misacads = [];
-        var middle = []
-        var acadNotes = accessFactory.pegaAgendamento();
-        meuAcadNotes = acadNotes.orderByChild("usuario").equalTo($scope.userUid);
-        meuAcadNotes.on("child_added", function(snapshot){
-          middle.push(snapshot.val())
-          middle[Olaf].agendaId = snapshot.key;
-          Olaf++;
-        })
-        $timeout(function(){
-          arranja(middle)
-        }, 500);
-}
+        $scope.diadehoje = new Date();
+  });
+
+  $scope.$on("$ionicView.leave", function(event){
+    $scope.misacads = [];
+  });
+
+/////////////////////////////////////////
 
 
-function arranja(arr) {
-  // body...
-  console.log("em arranja")  
-  var passodoble = []
-  passodoble = arr;
-  angular.forEach(passodoble, function(valor, chave){
-      //console.log(valor.academia)
-      var mineAcad = accessFactory.pegaAcademiaUnica(valor.academia)
-      mineAcad.once("value").then(function(snapshot){ 
-        valor.datos = snapshot.val();
-        $scope.misacads.push(valor)
-        console.log(valor)
-        $scope.$apply();  
-      });
-        
-  }); 
-}
+
+
+      $scope.masterplan = function(){
+        console.log("masterplan")              
+        $scope.misacads = [];
+        var middle = AgendarTreino.arrAgenda($scope.$parent.userUid);
+        console.log(middle)
+        console.log("/////////////////////////////////////") 
+        angular.forEach(middle, function(value, key){
+
+            console.log(value.academia)
+            var mineAcad = accessFactory.pegaAcademiaUnica(value.academia)
+            mineAcad.once("value").then(function(snapshot){      
+                value.datos = snapshot.val();
+                $scope.misacads.push(value)
+                console.log(value)
+
+            });
+            $timeout(function(){
+                    $scope.misacads.reverse();
+                    Utils.hide();
+             }, 2000);  
+
+        });
+
+  
+    }
 
 ///////////////////////////////////////////////////////////////////
 
 /* DETALHES DA ACADEMIA */
     $scope.acadDetails = function(tipo, idAcad){
-      console.log("em acadDetails") 
       var ditto = "";
       var targetAcad = {}
       angular.forEach($scope.misacads, function(value, key){
@@ -97,9 +110,12 @@ function arranja(arr) {
       return ditto;
     }
 
-/////////////////////////////////////////
 
-/* ACERTO DE DATA */
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideIn({
+            selector: '.animate-fade-slide-in .item'
+        });
+    }, 200);
 
     $scope.acertaZero = function(minuts){
       if(minuts !== 0){
@@ -119,34 +135,7 @@ function arranja(arr) {
         }else{
           return "";
         }
-    };    
-
-/////////////////////////////////////////
-
-/* CONFIRMAÇÕES */
-
-$scope.showConfirm01 = function(ves) {
-    console.log(ves)
-   var confirmPopup = $ionicPopup.confirm({
-     title: 'Cancelar Treino',
-     cssClass: 'popme',
-     template: 'Você tem certeza ?'
-   });
-
-   confirmPopup.then(function(res) {
-     if(res) {
-       console.log('You are sure');
-       $scope.vaiMudar = true;
-       AgendarTreino.changeAppStatus(ves.agendaId);
-     } else {
-       console.log('You are not sure');
-     }
-   });
- };
-
-/////////////////////////////////////////
-
-/* STATUS DAS MARCAÇÕES */
+    };
 
     $scope.judgeDredd = function(tolo){
       var compromisso = tolo;
@@ -156,27 +145,27 @@ $scope.showConfirm01 = function(ves) {
       var day_d = compromisso.dia ;
       if(compromisso.status === 0){
         status = "Aguardando";
-       $scope.showBut = true;         
+       $scope.hideBut = false;         
       }
       if(compromisso.status === 0 && day_d < day_o){
         status = "Faltou";
-        $scope.showBut = false;
+        $scope.hideBut = true;
       }      
       if(compromisso.status === 1){
        status = "liberado"
-       $scope.showBut = false; 
+       $scope.hideBut = false; 
       }
       if(compromisso.status === 3){
        status = "usuário cancelou"
-       $scope.showBut = false; 
+       $scope.hideBut = true; 
       }
       if(compromisso.status === 4){
-       status = "Cancelado pela academia";
-       $scope.showBut = false;        
+       status = "academia cancelou";
+       $scope.hideBut = false;        
       }
       if(compromisso.status === 4 && day_d < day_o){
-        status = "Cancelado pela academia";
-        $scope.showBut = false;       
+        status = "Faltou";
+        $scope.hideBut = true;       
       }
 
       return status;
@@ -195,33 +184,28 @@ $scope.showConfirm01 = function(ves) {
         console.log()
 
         if(compro.status === 0){
-          labe = "balanced"
+          labe = "label label-success"
         }
          if(compro.status === 0 && day_d < day_o){
-          labe = "assertive"
+          labe = "label label-danger"
         }       
         if(compro.status === 1){
          labe = "label label-info" 
         }
         if(compro.status === 3){
-         labe = "balanced" 
+         labe = "label label-danger" 
         }
         if(compro.status === 4){
-         labe = "energized" 
+         labe = "label label-warning" 
         }
         return labe;
       };
 
 
-/////////////////////////////////////////
-
-
-  $timeout(function(){
-       $scope.userUid = $scope.$parent.userUid;
-       console.log("O uid do usuário é "+$scope.userUid)
-       $scope.masterplan();
-  }, 2000);
-
+    $timeout(function(){
+        $scope.masterplan()
+        Utils.hide();
+     }, 2000);
 
 
     // Activate ink for controller

@@ -13,8 +13,10 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
 		$scope.$parent.showHeader();
 		$scope.dataDoTreino = "";
 		$scope.horaDoTreino = "";
+		$scope.horaok = false;
 		console.log("O usuário é "+$scope.usuarioAtivo)
 		$scope.observacoes = '';
+		$scope.agora = new Date()
     });
 
         if(outAcad){
@@ -41,13 +43,16 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
        
        $scope.fitnessTime = {
 	    callback: function (val) {      //Mandatory
-	      if (typeof (val) === 'undefined') {
+			console.log (val);
+	    	$scope.horaDoTreino = val;
+	    	$scope.horaok = true
+	      /*if (typeof (val) === 'undefined') {
 	        console.log('Time not selected');
 	      } else {
 	        var selectedTime = new Date(val * 1000);
 	        console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
 	        $scope.horaDoTreino = selectedTime.getUTCHours()+":"+$scope.acertaZero(selectedTime.getUTCMinutes());
-	      }
+	      }*/
 	    },
 	    inputTime: 50400,   //Optional
 	    format: 24,         //Optional
@@ -70,20 +75,38 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
 				console.log("ops");
 				return "00"
 			}
-		};         
+		};   
+
+		$scope.horeador = function(tictac){
+	        var selectedTime = new Date(tictac * 1000);
+	        console.log('Selected epoch is : ', tictac, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
+	        var toe = selectedTime.getUTCHours()+":"+$scope.acertaZero(selectedTime.getUTCMinutes());
+	        if(toe !== '0:00' || $scope.horaok === true){
+	        	return toe;
+	    	}else{
+	    		return "";
+	    	}
+		};
+
 
 		$scope.vaiTreinar = function() {
-			var compromisso = {
-				usuario: $rootScope.usuarioAtivo.$id,
-				academia: $scope.academia_ID,
-				dia: $scope.dataDoTreino,
-				hora: $scope.horaDoTreino,
-				obs: $scope.observacoes,
-				data_requisicao: Date.now(),
-				status: 0
-			};
-   			AgendarTreino.saveAgenda(compromisso)
-   			Utils.show()
+			$scope.agora.setHours(0,0,0,0)
+			if($scope.agora > $scope.dataDoTreino){
+				console.log("já passou esta data")
+				$rootScope.$broadcast("late_Sched");
+			}else{
+				var compromisso = {
+					usuario: $rootScope.usuarioAtivo.$id,
+					academia: $scope.academia_ID,
+					dia: $scope.dataDoTreino,
+					hora: $scope.horaDoTreino,
+					obs: $scope.observacoes,
+					data_requisicao: Date.now(),
+					status: 0
+				};
+	   			AgendarTreino.saveAgenda(compromisso)
+	   			Utils.show();
+   			}
  		};
 
       $rootScope.$on('saved_Sched', function (event) {
@@ -91,14 +114,24 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
           Utils.alertshow('Sucesso', 'Agendamento gravado com sucesso.');
 	 		$scope.dataDoTreino = "";
 			$scope.horaDoTreino = "";
-			$scope.observacoes = '';         
+			$scope.observacoes = '';
+			$scope.horaok = false;      
       });
       $rootScope.$on('error_Sched', function (event) {
           Utils.hide();
           Utils.alertshow('Erro', 'Por favor, tente novamente.');
 	 		$scope.dataDoTreino = "";
 			$scope.horaDoTreino = "";
-			$scope.observacoes = '';          
+			$scope.observacoes = '';
+			$scope.horaok = false;          
       });
+       $rootScope.$on('late_Sched', function (event) {
+          Utils.hide();
+          Utils.alertshow('Erro', 'A data escolhida é anterior à data de hoje. Por favor, tente novamente.');
+	 		$scope.dataDoTreino = "";
+			$scope.horaDoTreino = "";
+			$scope.observacoes = '';
+			$scope.horaok = false;          
+      });     
 
 };

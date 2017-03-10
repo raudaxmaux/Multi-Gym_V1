@@ -25,9 +25,11 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
                   AgendarTreino.arrAgenda($scope.userUid)
                     $timeout(function(){
                       $scope.agendaDeTreinos = AgendarTreino.getAgenda();
-                      console.log($scope.agendaDeTreinos)
-                    }, 2000);
-                  if($scope.agendaDeTreinos.length === 0){
+                      $rootScope.agendaDeTreinos = $scope.agendaDeTreinos
+
+
+                    }, 1000);
+                  if($rootScope.agendaDeTreinos.length === 0){
                     $scope.treinoZerado = true;
                   }else{
                       console.log("agenda carregada normalmente")                        
@@ -71,6 +73,20 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
       }
       if($rootScope.usuarioAtivo.academia){
         AgendarTreino.getMyAgenda($scope.userUid, $scope);
+
+         $scope.$watch("agendamentos", function(newValue, oldValue){
+          var velho = newValue;
+
+          if(velho == Object){
+            console.log("mudou");
+            var keys = Object.keys(velho)
+
+            console.log(keys.length)            
+          }
+          console.log(newValue)
+          $rootScope.$broadcast("mudaAgenda");           
+        })
+               
       }
       console.log("Fiquei bem na foto: " + $scope.foto)      
     })
@@ -173,34 +189,5 @@ function AppCtrl($scope, $rootScope, $location, $ionicModal, $ionicPopover, $tim
     $scope.join = function(){
       console.log("Este botão é para juntar-se ao clube")
     };
-
-
-    $scope.$watch("agendamentos", function(newValue, oldValue){
-      var velho = newValue;
-      var keys = Object.keys(velho)
-      var optimus = 
-      console.log(keys.length)
-      console.log(velho)
-      /*
-      angular.forEach(velho, function(element, key) {
-        if(key !== "$id" && key !== "$priority" ){
-          console.log("Hei!")
-          
-        console.log("este "+key)
-        $scope.array.push(element);
-        console.log($scope.array)
-        }
-      //$scope.array.push(element);
-  
-
-      });
-      */
-
-//      console.log("oldValue: "+angular.fromJson(angular.toJson(oldValue)));
-//      console.log("newValue: "+angular.fromJson(angular.toJson(newValue)));
-        //console.log("oldValue: "+angular.toJson(oldValue));
-        //console.log("newValue: "+angular.toJson(newValue));    
-    })
-
 
 };

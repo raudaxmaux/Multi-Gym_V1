@@ -20,7 +20,8 @@
 			getAgenda: _getAgenda,
 			arrAgenda: _arrAgenda,
 			saveAgenda: _saveAgenda,
-			getMyAgenda: _getMyAgenda
+			getMyAgenda: _getMyAgenda,
+			changeAppStatus: _changeAppStatus
 		};
 		return post_it;
 
@@ -32,6 +33,7 @@
 			var acadNotes = accessFactory.pegaAgendamento();
         	meuAcadNotes = acadNotes.orderByChild("usuario").equalTo(id);
         	agendaReady = $firebaseArray(meuAcadNotes);
+        	return agendaReady;
 		}
 
 		function _saveAgenda(agenda) {
@@ -66,6 +68,19 @@
         objMaromba.$loaded().then(function(){
         	objMaromba.$bindTo(scope, "agendamentos");
         });			
+		}
+
+
+		function _changeAppStatus(id) {
+			// body...
+		      var deller = {
+		        status: 3
+		      }
+		      var agendaKey = id
+		      console.log(agendaKey);
+		      var upperDate = accessFactory.pegaAgendamento()
+		      var dasDate = upperDate.child(agendaKey);
+		      dasDate.update(deller);
 		}
 
 

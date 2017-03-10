@@ -422,3 +422,11 @@ div.popup-container .popme{
 .obs{
   background: transparent;
 }
+
+.volador{
+    padding-top: 15px; 
+    font-size: 17px;
+    text-align: right; !important;
+    margin-top: 25px;
+    line-height: 1.2em
+}
