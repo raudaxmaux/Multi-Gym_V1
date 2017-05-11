@@ -26,6 +26,8 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
        		$scope.acad_agend = $scope.appointed_acad.nome;
        }  
 
+       $scope.buttonDisabled = false;
+
        $scope.calendObj = {
        		callback: function(val){
        			console.log (val)
@@ -43,7 +45,7 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
        
        $scope.fitnessTime = {
 	    callback: function (val) {      //Mandatory
-			console.log (val);
+			console.log ("este é "+val);
 	    	$scope.horaDoTreino = val;
 	    	$scope.horaok = true
 	      /*if (typeof (val) === 'undefined') {
@@ -91,6 +93,7 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
 
 		$scope.vaiTreinar = function() {
 			$scope.agora.setHours(0,0,0,0)
+			$scope.buttonDisabled = true;
 			if($scope.agora > $scope.dataDoTreino){
 				console.log("já passou esta data")
 				$rootScope.$broadcast("late_Sched");
@@ -101,6 +104,7 @@ function Agendar_treinosCtrl($scope, $rootScope, $timeout, $stateParams, ionicMa
 					dia: $scope.dataDoTreino,
 					hora: $scope.horaDoTreino,
 					obs: $scope.observacoes,
+					oneclick:false,
 					data_requisicao: Date.now(),
 					status: 0
 				};

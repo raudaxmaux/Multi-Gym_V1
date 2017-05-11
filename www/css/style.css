@@ -278,8 +278,6 @@ background-size: cover;
   text-align: center;
   }
 
-
-
 .maior{
     height: 60px !important;
     width: 60px !important;
@@ -288,8 +286,6 @@ background-size: cover;
 .tab-item{
   max-width: 800px;
 }
-
-
 
 div.popup-container .popme{
   color: #00000;
@@ -426,7 +422,69 @@ div.popup-container .popme{
 .volador{
     padding-top: 15px; 
     font-size: 17px;
-    text-align: right; !important;
+    text-align: right !important;
     margin-top: 25px;
     line-height: 1.2em
 }
+
+.oneclick{
+  box-shadow: none;
+}
+
+.afinador{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.mega{
+  border: 0px !important;
+  width: 120px !important;
+  height: 120px !important;
+  }
+
+  /* PASSAPORTE */
+  /*_______________________________________*/
+
+  .padd-green{
+    padding: 12px;
+    max-height: 80px;
+  }  
+
+  .background-green{
+    background-color: #A0B61A;
+  }
+
+  .greener{
+    background-color: #646c38;
+  }
+
+  .tought{
+    text-align: right !important;
+    font-size: 18px;
+    font-style: bolder;
+    padding-right: 20px !important;  
+  }
+
+  .avatar-grande{
+    margin-top: 30px;
+    left: 0px;
+    height: 120px !important;
+    width: 120px !important;
+    position: relative;   
+  }
+
+  .passcenter{
+    text-align: center !important;
+    font-weight: 700;
+    font-size: 22px;
+    color: #000;
+  }
+
+  .minus-top{
+    margin-top: -30px;
+  }
+
+  .verdao{
+    color: #fff;
+    font-variant: italic;
+  }

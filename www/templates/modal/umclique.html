@@ -1,0 +1,32 @@
+<ion-modal-view class="background">
+  <div class="bar bar-header bar-dark flat">
+      <h4><strong class="title-center">Check-in em {{acadio.nome}}</strong></h4>
+  </div>
+<ion-content class="has-header">
+ <div class="hero oneclick">
+ <div class="content">
+<div class="avatar mega" style="background-image: url('{{acadio.logo.url}}');"></div>
+</div>
+</div>
+<div class="content afinador">
+<div class="text-center">
+	 			<h2>Check-in One-Click</h2>
+	 			<h3>Você está marcando um treino no parceiro <strong class="energized-900">{{acadio.nome}}</strong></h3>
+	 		</div>
+	 		<p>
+	 			Ao clicar no botão ACEITAR você se compromete em estar presente no endereço do parceiro no período de <strong>uma hora</strong>. Caso não consiga estar a tempo no local, clique no botão CANCELAR do seu passaporte e remarque quando estiver mais perto ou em outro parceiro à sua escolha. 
+	 		</p>
+</div>	 		
+<div class="text-center padding">
+      <button class = "button button-balanced-900 icon icon-left ion-ios-checkmark-outline"
+         ng-click = "cliqueJa()" >Aceitar</button>&nbsp;
+      <button class = "button button-energized-900 icon icon-left ion-ios-close-outline"
+         ng-click = "closeModal()">Cancelar</button>
+ </div>
+ <div class="text-center padding">
+ <button class = "button button-balanced-900 icon icon-left ion-android-calendar" ng-click="sendMark()">Marcar em outra data e horário</button>
+ </div>
+ </div>
+
+   </ion-content>
+</ion-modal-view>

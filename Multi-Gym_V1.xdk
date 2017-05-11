@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "a8927b48-a5dd-429d-bdd9-85630ad0e22d",
-      "lastModifiedDate": 1489072900326,
+      "lastModifiedDate": 1492885728824,
       "creationDate": 1470020057239
     },
     "XDK-app-designer": "true",
@@ -230,6 +230,24 @@
         "data": {},
         "dependedBy": [],
         "custom": "true"
+      },
+      {
+        "id": "cordova-plugin-dialogs",
+        "name": "Notification",
+        "version": "1.3.2",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-dialogs",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-dialogs",
+        "selectedState": "Included",
+        "checksum": "de969508",
+        "dependsOn": [],
+        "topLevel": true,
+        "permissions": {},
+        "description": "Cordova Notification Plugin",
+        "data": {},
+        "dependedBy": []
       }
     ],
     "buildConfigurations": {
@@ -297,10 +315,10 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "19",
-        "appVersion_": "0.15",
+        "appVersion_": "0.24",
         "appAuthor_": "Brito Hipermídia",
         "appDescription_": "Aplicativo Beta de academias",
-        "appVersionCode_": "207"
+        "appVersionCode_": "215"
       },
       "iOS": {
         "platform_": "ios",

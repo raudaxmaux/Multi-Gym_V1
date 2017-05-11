@@ -216,6 +216,16 @@ angular.module('routes', [])
         }  
   })
 
+   .state('app.passaporte', {
+    url: '/passaporte',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/passaporte.html',
+        controller: 'PassaporteCtrl'
+      }
+    }
+  })
+
    .state('app.mapa', {
     url: '/mapa',
     views: {
@@ -229,4 +239,7 @@ angular.module('routes', [])
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/loginfo');
+})
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $ionicConfigProvider.navBar.alignTitle('center')
 });

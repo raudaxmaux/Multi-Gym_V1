@@ -208,18 +208,8 @@ function FireAuth($rootScope, $firebaseAuth, $firebaseObject, $location, $timeou
 		    	$timeout(function() {
 				 	if(bje.fbSign !== false)
 				 	{
-				 		//if(fb_track.photoURL !== bje.photoURL){
-				 			//console.log("a imagem não é igual")
-				 			//changePhotoURL(bje.photoURL);
-				 			//console.log("troca a imagem")
-
-				 		//else{
-					 		//console.log("a imagem é igual")				 			
-				 			segue_o_seco();
-				 		//};
-				 	//}else{
-				 	//	console.log("nenhuma imagem");
-				 	//	segue_o_seco();
+				 			changePhotoURL(fb_track.photoURL);		 			
+				 			//segue_o_seco();
 				 	};				
 				}, 300);
 	

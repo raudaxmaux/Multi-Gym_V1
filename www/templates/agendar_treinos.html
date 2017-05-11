@@ -19,7 +19,7 @@
     </div>
      <div class="item item-input-inset enpower">
         <label class="item item-input-wrapper">   
-        <input type="text" placeholder="Data" ng-model="dataDoTreino | date:'dd/MM/yyyy'" required>
+        <input type="text" placeholder="Data" ng-model="dataDoTreino | date:'dd/MM/yyyy'">
         </label>
         <button class="button button-energized-900 ink" ng-click="normDate()"><i class="ion-android-calendar"></i></button>
      </div>
@@ -30,7 +30,7 @@
         <label class="item item-input-wrapper">   
         <input type="text" placeholder="Horário" ng-model="horeador(horaDoTreino)" required>
         </label>
-        <button class="button button-energized-900 ink" ng-click="normHour()"><i class="ion-android-time"></i></button>
+        <button class="button button-energized-900 myred ink" ng-click="normHour()"><i class="ion-android-time"></i></button>
      </div>
     <div class="item">
       <h4 class="text-center light">Se houver alguma observação, escreva.</h4>
@@ -43,7 +43,7 @@
   </div>
  </form>    
   <div style="text-align: right; padding-top: 10px;">
-          <button ng-click="vaiTreinar()" class="button button-balanced ink" ng-disabled="marcacao.$invalid" >Agendar</button>
+          <button ng-click="vaiTreinar()" class="button button-balanced ink" ng-disabled="marcacao.$invalid || buttonDisabled" >Agendar</button>
           &nbsp;
           <button ui-sref="app.mapa" class="button button-assertive ink">Cancelar</button>
       </div>

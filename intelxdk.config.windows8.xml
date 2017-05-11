@@ -21,6 +21,7 @@
 <intelxdk:plugin intelxdk:name="Compat" intelxdk:value="cordova-plugin-compat" intelxdk:version="1.0.0" intelxdk:checksum="f36b9f8a" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="File" intelxdk:value="cordova-plugin-file" intelxdk:version="4.3.0" intelxdk:checksum="ad62ab5" intelxdk:type="file"/>
 <intelxdk:plugin intelxdk:name="ImagePicker" intelxdk:value="cordova-plugin-image-picker" intelxdk:version="1.1.1" intelxdk:checksum="ba2ed3c7" intelxdk:type="file"/>
+<intelxdk:plugin intelxdk:name="Notification" intelxdk:value="cordova-plugin-dialogs" intelxdk:version="1.3.2" intelxdk:checksum="de969508" intelxdk:type="file"/>
 <preference name="windows-publisher-display-name"/>
 <preference name="windows-publisher-id"/>
 <!--creationInfo:{"src":"jsapp/template-blank-cordova-ad-project/sample.zip","projectTypeName":"com.intel.xdk.projecttype.jsapp"}-->

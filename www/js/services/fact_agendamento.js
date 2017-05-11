@@ -41,8 +41,8 @@
 			console.log(agendaReady)
 			console.log(agenda);
 			agendaReady.$add(agenda).then(function(chave){
-				console.log(chave);
-				$rootScope.$broadcast("saved_Sched");
+				var idet = chave.key;
+				$rootScope.$broadcast("saved_Sched", idet);
 			}).catch(function(error){
 				console.log("não foi salvo")
 				console.log(error)

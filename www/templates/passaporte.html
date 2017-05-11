@@ -1,0 +1,48 @@
+<ion-view drag-content="false">
+	<ion-content class="background-green">
+
+		<div class = "row padd-green greener">
+			<div class="col">
+				<img src="img/mini-shine.png" style="height: 50px; width: auto;">
+			</div>
+			<div class="col col-center tought">
+				<strong>PASSAPORTE</strong>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-center passcenter">
+				<div class="avatar avatar-grande" style="background: url({{encontro.foto_cliente}}) center; background-size: cover;"></div>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col col-center passcenter">
+				{{encontro.nome_cliente}}
+		</div>
+		</div>	
+		<div class="row">
+			<div class="col col-center passcenter" style="font-size: 80px;">
+				<i class="icon ion-android-arrow-dropdown"></i>
+		</div>
+		</div>				
+		<div class="row">
+			<div class="col col-center passcenter minus-top">
+				<div class="avatar avatar-grande" style="background: url({{encontro.logo_acad}}) center; background-size: cover;"></div>
+			</div>	
+		</div>
+				<div class="row">
+			<div class="col col-center passcenter">
+				{{encontro.nome_acad}}
+		</div>
+		</div>
+		<div class="row">
+			<div class="col col-center passcenter verdao">
+			<br>
+				Tempo de chegada: <span style="font-weight: bolder; font-size: 36px; color: #000;">{{inSamara}}</span>
+		</div>
+		</div>				
+	</ion-content>
+    <div class="lowbar background">
+
+      <button class="button button-full button-assertive noneblock" ng-click="cancelaIda()">Cancelar</button>
+    </div>
+</ion-view>

@@ -3,7 +3,7 @@
             <div class="hero" style="background-image: url('{{parceiro.fotos.foto1.url}}');">
                 <div class="content">
                     <div class="avatar" style="background-image: url('{{parceiro.logo.url}}');"></div>
-                  <div class="marcador" ng-show="unregistered"><button class="button button-small dark" ui-sref="app.agendar_treinos({id: partId})"><i class="ion-android-calendar"></i> Check-In</button></div>                  
+                  <div class="marcador" ng-show="unregistered"><button class="button button-small dark" ng-click="agendar01(parceiro)"><i class="ion-android-calendar"></i> Check-In</button></div>                  
                     <div  class="padding_top exquisite">
                     <h3><a class="energized"><strong>{{parceiro.nome}}</strong></a></h3>
                     </div>
